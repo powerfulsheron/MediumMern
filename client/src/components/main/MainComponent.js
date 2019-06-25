@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
+import { AuthComponent } from "../auth/authComponent";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,7 +14,8 @@ export default function MainComponent() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
+      <AuthComponent />
     </Container>
   );
 }

@@ -1,9 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Toolbar } from "@material-ui/core";
+import { Toolbar, Link } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 import { AppBar } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {

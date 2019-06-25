@@ -1,10 +1,11 @@
 import React from "react";
 import { TextField, Button } from "@material-ui/core";
 
-class LoginForm extends React.Component {
+class RegisterForm extends React.Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    repeatPassword: ""
   };
 
   // Style
@@ -23,7 +24,10 @@ class LoginForm extends React.Component {
   };
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return (
+      (this.state.email.length > 0 && this.state.password.length > 0) ||
+      this.state.password !== this.state.repeatPassword
+    );
   }
 
   handleChange = event => {
@@ -35,7 +39,7 @@ class LoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // Action de connexion
+    // Action de register
   };
 
   render() {
@@ -66,6 +70,17 @@ class LoginForm extends React.Component {
           variant="outlined"
         />
 
+        <TextField
+          id="repeatPassword"
+          label="Repeat password"
+          type="password"
+          style={this.styles().input}
+          value={this.state.repeatPassword}
+          onChange={this.handleChange}
+          margin="normal"
+          variant="outlined"
+        />
+
         <Button variant="contained" disabled={!this.validateForm()}>
           Submit
         </Button>
@@ -74,4 +89,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default RegisterForm;
