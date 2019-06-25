@@ -67,3 +67,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5M
     "surname": "Henri",
     "birthdate": "2018-01-01"
 }
+
+###
+POST http://localhost:3000/api/v1/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjE0NjkwNzUsImV4cCI6MTU2MTQ3MjY3NX0.DSwJXz6EriTi7YKXKiYDBGyqtLeq_w83NGiyYuLsnmg
+
+{
+    "title": "SDREEEE",
+    "description": "SDREEEE",
+    "content": "SDREEEE",
+    "date": "2018-01-01",
+    "timetoread": 15,
+    "profilepictureurl": "SDREEEE",
+    "mainimage": "SDREEEE",
+    "score": 40,
+    "type": {"name":"type1","description":"type1 description"},
+    "tags": [{"name":"tag1","description":"tag1 description"},{"name":"tag2","description":"tag2 description"}]
+}

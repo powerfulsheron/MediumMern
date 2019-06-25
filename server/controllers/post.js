@@ -6,6 +6,10 @@ module.exports = {
         Post.find(req.query).then(data => res.json(data));
     },
 
+    save: (req, res) => {
+        console.log(req.user);
+    },
+
     update: (req, res) => {
         Post.findOneAndUpdate({ _id:req.body.id }, { $set:req.body })
         .then((updatedpost) => {
