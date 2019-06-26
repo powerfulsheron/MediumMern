@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
+const db = require('../lib/db');
 
 let TagSchema = mongoose.Schema({
-    name: String,
-    description: String
+    name: String
 });
 
-const Tag = mongoose.model('Tag',TagSchema);
+const Tag = db.model('Tag',TagSchema);
 module.exports = Tag;

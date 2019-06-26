@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('mongoose-type-email');
+const db = require('../lib/db');
 
 let UserSchema = mongoose.Schema({
     name: String,
@@ -18,8 +19,12 @@ let UserSchema = mongoose.Schema({
     bookmarks: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
+    }],
+    posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }]
-});
+});+
 
 UserSchema.plugin(require('mongoose-bcrypt'));
 
@@ -46,5 +51,5 @@ UserSchema.statics.login = function(email, password){
     });
 }
 
-const User = mongoose.model('User',UserSchema);
+const User = db.model('User',UserSchema);
 module.exports = User;

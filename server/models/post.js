@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
+const db = require('../lib/db');
 
 let PostSchema = mongoose.Schema({
     title: String,
     description: String,
     content: String,
-    Date: Date,
+    date: Date,
     timetoread: Number,
     profilepictureurl: String,
-    inscriptiondate: Date,
     mainimage: String,
     score: Number,
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     type: {type: mongoose.Schema.Types.ObjectId, ref: 'Type'},
     tags: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -17,5 +18,5 @@ let PostSchema = mongoose.Schema({
     }]
 });
 
-const Post = mongoose.model('Post',PostSchema);
+const Post = db.model('Post',PostSchema);
 module.exports = Post;
