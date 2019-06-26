@@ -34,7 +34,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyMTk4O
 ###
 
 GET http://localhost:3000/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5MDMsImV4cCI6MTU2MTI5NzUwM30.1AB4Mz4E-b0F6gH0dlIltXoR2kADP-8_nH2RV3rCt7o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
 
 ###
 
@@ -43,8 +43,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyODkzN
 
 ###
 
-GET http://localhost:3000/api/v1/users?name=Canavaggio
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyODkzNzksImV4cCI6MTU2MTI5Mjk3OX0.YwiLct9eUfqJ7Yp4UMiYaE2K3uS8nNRlX5mESRixVss
+GET http://localhost:3000/api/v1/users?_id=5d115961da3472001cc34fd8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTUzNTQzMSwiZXhwIjoxNTYxNTM5MDMxfQ.mlgXrMVAPkTD58oxbc7zRJRnQFHO8bFc_tixJHejAgk
 
 ###
 
@@ -71,7 +71,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5M
 ###
 POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjE0NjkwNzUsImV4cCI6MTU2MTQ3MjY3NX0.DSwJXz6EriTi7YKXKiYDBGyqtLeq_w83NGiyYuLsnmg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
 
 {
     "title": "SDREEEE",
@@ -81,7 +81,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjE0NjkwN
     "timetoread": 15,
     "profilepictureurl": "SDREEEE",
     "mainimage": "SDREEEE",
-    "score": 40,
-    "type": {"name":"type1","description":"type1 description"},
-    "tags": [{"name":"tag1","description":"tag1 description"},{"name":"tag2","description":"tag2 description"}]
+    "score": 40
 }
+
+###
+
+GET http://localhost:3000/api/v1/types
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
+
+
+###
+
+GET http://localhost:3000/api/v1/tags
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg

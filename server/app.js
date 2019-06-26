@@ -2,6 +2,8 @@ const express = require('express');
 const securityRouter = require('./routes/security');
 const userRouter = require('./routes/user');
 const postRouter = require('./routes/post');
+const typeRouter = require('./routes/type');
+const tagRouter = require('./routes/tag');
 const bodyparser = require('body-parser');
 const verifyToken = require('./middlewares/security');
 const cors = require('cors');
@@ -22,6 +24,8 @@ app.use('/', securityRouter);
 app.use(verifyToken);
 router.use('/users', userRouter);
 router.use('/posts', postRouter);
+router.use('/tags', tagRouter);
+router.use('/types', typeRouter);
 
 app.use('/api/v1', router);
 
