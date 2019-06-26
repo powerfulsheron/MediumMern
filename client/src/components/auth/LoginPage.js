@@ -1,8 +1,8 @@
 import React from "react";
+import { Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import LoginForm from "./loginForm";
+import LoginFormContainer from "./LoginFormContainer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,17 +11,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function LoginComponent() {
+export function LoginPage() {
   const classes = useStyles();
-
   return (
-    <div>
+    <Container maxWidth="md">
       <Paper className={classes.root}>
         <Typography variant="h5" component="h3">
-          Please Login
+          Login
         </Typography>
-        <LoginForm />
+        <LoginFormContainer />
       </Paper>
-    </div>
+    </Container>
   );
 }

@@ -1,77 +1,52 @@
 import React from "react";
 import { TextField, Button } from "@material-ui/core";
 
-class LoginForm extends React.Component {
-  state = {
-    email: "",
-    password: ""
+export function LoginForm({
+  email,
+  password,
+  handleChange,
+  handleSubmit,
+  handleValidation
+}) {
+  // Style formulaire
+  const styles = {
+    form: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
+    input: {
+      width: "90%"
+    }
   };
 
-  // Style
-  styles = () => {
-    return {
-      form: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      },
-      input: {
-        width: "90%"
-      }
-    };
-  };
+  return (
+    <form onSubmit={handleSubmit} autoComplete="off" style={styles.form}>
+      <TextField
+        id="email"
+        label="Email"
+        style={styles.input}
+        value={email}
+        onChange={handleChange}
+        margin="normal"
+        variant="outlined"
+      />
 
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
+      <TextField
+        id="password"
+        label="Password"
+        type="password"
+        style={styles.input}
+        value={password}
+        onChange={handleChange}
+        margin="normal"
+        variant="outlined"
+      />
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    // Action de connexion
-  };
-
-  render() {
-    return (
-      <form
-        onSubmit={this.handleSubmit}
-        autoComplete="off"
-        style={this.styles().form}
-      >
-        <TextField
-          id="email"
-          label="Email"
-          style={this.styles().input}
-          value={this.state.email}
-          onChange={this.handleChange}
-          margin="normal"
-          variant="outlined"
-        />
-
-        <TextField
-          id="password"
-          label="Password"
-          type="password"
-          style={this.styles().input}
-          value={this.state.password}
-          onChange={this.handleChange}
-          margin="normal"
-          variant="outlined"
-        />
-
-        <Button variant="contained" disabled={!this.validateForm()}>
-          Submit
-        </Button>
-      </form>
-    );
-  }
+      <Button type="submit" variant="contained" disabled={!handleValidation}>
+        Submit
+      </Button>
+    </form>
+  );
 }
-
-export default LoginForm;

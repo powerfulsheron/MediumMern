@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SimpleAppBar() {
+export default function HeaderComponent() {
   const classes = useStyles();
 
   return (

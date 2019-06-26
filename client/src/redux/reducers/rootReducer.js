@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-//import movieReducer from "./movieReducer";
+import authReducer from "./authReducer";
 
-//const rootReducer = combineReducer({});
+const rootReducer = combineReducers({
+  auth: authReducer
+});
 
-//export default rootReducer;
+export default rootReducer;

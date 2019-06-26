@@ -3,8 +3,8 @@ import { TextField, Button } from "@material-ui/core";
 
 class RegisterForm extends React.Component {
   state = {
-    email: "",
-    password: "",
+    registerEmail: "",
+    registerPassword: "",
     repeatPassword: ""
   };
 
@@ -25,8 +25,9 @@ class RegisterForm extends React.Component {
 
   validateForm() {
     return (
-      (this.state.email.length > 0 && this.state.password.length > 0) ||
-      this.state.password !== this.state.repeatPassword
+      this.state.registerEmail.length > 0 &&
+      this.state.registerPassword.length > 0 &&
+      this.state.registerPassword === this.state.repeatPassword
     );
   }
 
@@ -50,7 +51,7 @@ class RegisterForm extends React.Component {
         style={this.styles().form}
       >
         <TextField
-          id="email"
+          id="registerEmail"
           label="Email"
           style={this.styles().input}
           value={this.state.email}
@@ -60,7 +61,7 @@ class RegisterForm extends React.Component {
         />
 
         <TextField
-          id="password"
+          id="registerPassword"
           label="Password"
           type="password"
           style={this.styles().input}
@@ -81,7 +82,11 @@ class RegisterForm extends React.Component {
           variant="outlined"
         />
 
-        <Button variant="contained" disabled={!this.validateForm()}>
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={!this.validateForm()}
+        >
           Submit
         </Button>
       </form>
