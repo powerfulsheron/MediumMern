@@ -1,34 +1,51 @@
 const authReducer = (
   state = {
+    userID: "",
     token: window.localStorage.getItem("token"),
-    logged: false,
+    logged: window.localStorage.getItem("token") ? true : false,
     err: ""
   },
   action
 ) => {
   switch (action.type) {
-    // Auth success
-    case "APP_LOGIN_SUCCEED": {
-      window.localStorage.setItem("token", action.payload.token);
-      return {
-        token: action.payload.token,
-        logged: action.payload.logged,
-        err: ""
-      };
-    }
-
     // Auth requested
     case "APP_LOGIN_REQUESTED": {
       return state;
     }
 
+    // Token verify requested
+    case "APP_TOKEN_REQUESTED": {
+      return state;
+    }
+
+    // Auth success
+    case "APP_LOGIN_SUCCEED": {
+      state.userID = action.payload.userID;
+      state.token = action.payload.token;
+      state.logged = true;
+      return state;
+    }
+
+    // Valid Token
+    case "APP_VALID_TOKEN": {
+      state.userID = action.payload.userID;
+      state.token = action.payload.token;
+      state.logged = true;
+      return state;
+    }
+
     // Auth failed
     case "APP_LOGIN_FAILED": {
-      return {
-        token: "",
-        logged: action.payload.logged,
-        err: action.payload.err
-      };
+      state.logged = false;
+      state.err = action.payload.err;
+      return state;
+    }
+
+    // Invalid Token
+    case "APP_INVALID_TOKEN": {
+      state.logged = false;
+      state.err = action.payload.err;
+      return state;
     }
 
     // Default

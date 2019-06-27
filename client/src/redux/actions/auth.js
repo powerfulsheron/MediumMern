@@ -1,3 +1,8 @@
+const jwt = require("jsonwebtoken");
+
+// ----------------------
+// ------   LOGIN  ------
+// ----------------------
 export function appLogin(email, password, dispatch) {
   fetch("http://localhost:3000/login", {
     method: "POST",
@@ -20,12 +25,16 @@ export function appLogin(email, password, dispatch) {
       }
     })
     .then(data => {
+      // Sauvegarde en localStorage
+      window.localStorage.setItem("token", data.token);
+      var decoded = jwt.verify(data.token, "MyBestSecret");
+
+      // Succeed
       dispatch({
         type: "APP_LOGIN_SUCCEED",
         payload: {
-          token: data.token,
-          logged: true,
-          err: ""
+          userID: decoded.id,
+          token: data.token
         }
       });
     })
@@ -33,19 +42,44 @@ export function appLogin(email, password, dispatch) {
       dispatch({
         type: "APP_LOGIN_FAILED",
         payload: {
-          token: "",
-          logged: false,
           err: e.error ? e.error : e
         }
       });
     });
 
   return {
-    type: "APP_LOGIN_REQUESTED",
-    payload: {
-      token: "",
-      logged: false,
-      err: ""
+    type: "APP_LOGIN_REQUESTED"
+  };
+}
+
+// ----------------------
+// ---  VERIFY TOKEN  ---
+// ----------------------
+export function appVerifyToken(dispatch) {
+  // Recupération en localStorage
+  var token = window.localStorage.getItem("token");
+
+  jwt.verify(token, "MyBestSecret", (err, decodedToken) => {
+    if (err || !decodedToken) {
+      window.localStorage.removeItem("token");
+      dispatch({
+        type: "APP_INVALID_TOKEN",
+        payload: {
+          err: err
+        }
+      });
+    } else {
+      dispatch({
+        type: "APP_VALID_TOKEN",
+        payload: {
+          token: token,
+          userID: decodedToken.id
+        }
+      });
     }
+  });
+
+  return {
+    type: "APP_TOKEN_REQUESTED"
   };
 }

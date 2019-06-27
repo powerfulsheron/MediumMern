@@ -2,20 +2,37 @@ import React from "react";
 import "./App.css";
 import HeaderComponent from "./components/header/HeaderComponent";
 import MainComponent from "./components/main/MainComponent";
+import { connect } from "react-redux";
+import { appVerifyToken } from "./redux/actions/auth";
 
-//import TodoList from "./components/Todo/TodoList";
+class App extends React.Component {
+  render() {
+    // Verification de la validité du Token avant le rendu
+    this.props.verifyToken();
 
-function App() {
-  return (
-    <div className="App">
-      <header>
-        <HeaderComponent />
-      </header>
-      <main>
-        <MainComponent />
-      </main>
-    </div>
-  );
+    // Render
+    return (
+      <div className="App">
+        <header>
+          <HeaderComponent />
+        </header>
+        <main>
+          <MainComponent />
+        </main>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+const mapActionToProps = dispatch => ({
+  verifyToken: () => dispatch(appVerifyToken(dispatch))
+});
+
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(App);
