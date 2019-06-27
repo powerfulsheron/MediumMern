@@ -1,29 +1,33 @@
-const authReducer = (state = { token: "", logged: false }, action) => {
+const authReducer = (
+  state = {
+    token: window.localStorage.getItem("token"),
+    logged: false,
+    err: ""
+  },
+  action
+) => {
   switch (action.type) {
     // Auth success
     case "APP_LOGIN_SUCCEED": {
-      console.log("Auth succeed");
+      window.localStorage.setItem("token", action.payload.token);
       return {
         token: action.payload.token,
-        logged: true
+        logged: action.payload.logged,
+        err: ""
       };
     }
 
     // Auth requested
     case "APP_LOGIN_REQUESTED": {
-      console.log("Auth requested");
-      return {
-        token: "",
-        logged: false
-      };
+      return state;
     }
 
     // Auth failed
     case "APP_LOGIN_FAILED": {
-      console.error("Auth Failed");
       return {
         token: "",
-        logged: false
+        logged: action.payload.logged,
+        err: action.payload.err
       };
     }
 

@@ -11,32 +11,37 @@ export function appLogin(email, password, dispatch) {
     })
   })
     .then(response => {
-      console.log(response);
       // If failed
-      if (response.status !== 200) {
-        dispatch({
-          type: "APP_LOGIN_FAILED"
-        });
-        return Promise.reject("Error " + response.status);
-      } else {
+      if (response.status === 201) {
         return response.json();
+      } else if (response.status === 400) {
+        return Promise.reject("Invalid email/password");
+      } else {
+        return Promise.reject("Unexpected error");
       }
     })
     .then(data => {
-      console.log(data);
       // Succeed
       dispatch({
         type: "APP_LOGIN_SUCCEED",
         playload: {
-          token: data
+          token: data.token,
+          logged: true,
+          err: ""
         }
       });
-      this.setState({
-        token: data,
-        received: true
-      });
     })
-    .catch(e => console.error(e));
+    .catch(e => {
+      // Error
+      dispatch({
+        type: "APP_LOGIN_FAILED",
+        payload: {
+          token: "",
+          logged: false,
+          err: e.error ? e.error : e
+        }
+      });
+    });
 
   return {
     type: "APP_LOGIN_REQUESTED"
