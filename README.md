@@ -12,7 +12,6 @@ docker-compose run client npm install
 docker exec -it [mongo_container] mongo -u root -p password
 use SampleCollections
 db.createCollection("types")
-db.createCollection("tags")
 db.types.insertMany(
     [{ 
         name: 'Rubax',
@@ -35,55 +34,156 @@ db.types.insertMany(
         description: 'Everything related to Python'
     }]
 )
-db.tags.insertMany(
-    [{ 
-        name: 'api',
+db.createCollection("posts")
+db.posts.insertMany([
+    { 
+        title: "POST 1",
+        description: "Desc 1",
+        content: "Content 1",
+        date: "2018-01-01",
+        timetoread: 1,
+        mainimage: "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
+        score: 1,
+        user: {
+            _id: "5d115961da3472001cc34fd8",
+            name: "Canavaggio",
+            surname: "Lorenzo",
+            profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        },
+        type: "5d1325e0af51080d8afdd7fa",
+        tags: ["tests","docker","CI"],
+        comments:[
+        {
+            content: "trop bien j'ai kiffé wlh",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        {
+            content: "trop bien j'ai kiffé wlh 2",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        {
+            content: "trop bien j'ai kiffé wlh 3",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        ]
     },
-    {
-        name: 'test',
+    { 
+        title: "POST 2",
+        description: "Desc 2",
+        content: "Content 2",
+        date: "2018-01-01",
+        timetoread: 2,
+        mainimage: "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
+        score: 2,
+        user: {
+            _id: "5d115961da3472001cc34fd8",
+            name: "Canavaggio",
+            surname: "Lorenzo",
+            profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        },
+        type: "5d1325e0af51080d8afdd7fb",
+        tags: ["java","spring","auth"],
+        comments:[
+        {
+            content: "trop bien j'ai kiffé wlh",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        {
+            content: "trop bien j'ai kiffé wlh 2",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        {
+            content: "trop bien j'ai kiffé wlh 3",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        ]
     },
-    {
-        name: 'orm',
-    },
-    {
-        name: 'documentation',
-    },
-    {
-        name: 'script',
-    },
-    {
-        name: 'snippet',
-    },
-    {
-        name: 'database',
-    },
-    {
-        name: 'software',
-    },
-    {
-        name: 'tool',
-    },
-    {
-        name: 'mooc',
-    },
-    {
-        name: 'sdk',
-    },
-    {
-        name: 'security',
-    },
-    {
-        name: 'client',
-    },
-    {
-        name: 'token',
-    },
-    {
-        name: 'cloud',
-    },
-    {
-        name: 'CI',
+    { 
+        title: "POST 3",
+        description: "Desc 3",
+        content: "Content 3",
+        date: "2018-01-01",
+        timetoread: 3,
+        mainimage: "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
+        score: 3,
+        user: {
+            _id: "5d115961da3472001cc34fd8",
+            name: "Canavaggio",
+            surname: "Lorenzo",
+            profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        },
+        type: "5d1325e0af51080d8afdd7fc",
+        tags: ["jest","npm","yarn"],
+        comments:[
+        {
+            content: "trop bien j'ai kiffé wlh",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        {
+            content: "trop bien j'ai kiffé wlh 2",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        {
+            content: "trop bien j'ai kiffé wlh 3",
+            date: "2018-01-01",
+            user: {
+                _id: "5d1325e0af51080d8afdd7fa",
+                name: "Canavaggio",
+                surname: "Lorenzo",
+                profilepictureurl: "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+            }
+        },
+        ]
     }
     ]
 )
+
 ```

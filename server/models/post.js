@@ -7,14 +7,26 @@ let PostSchema = mongoose.Schema({
     content: String,
     date: Date,
     timetoread: Number,
-    profilepictureurl: String,
     mainimage: String,
     score: Number,
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    type: {type: mongoose.Schema.Types.ObjectId, ref: 'Type'},
-    tags: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tag'
+    user: {
+        _id: String,
+        name: String,
+        surname: String,
+        profilepictureurl: String
+    },
+    type: String,
+    tags: [String],
+    comments:[{
+        id: mongoose.Schema.Types.ObjectId,
+        content: String,
+        date: Date,
+        user: {
+            _id: String,
+            name: String,
+            surname: String,
+            profilepictureurl: String
+        }
     }]
 });
 

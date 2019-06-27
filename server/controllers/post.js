@@ -3,8 +3,13 @@ const User = require('../models/user.js');
 
 module.exports = {
 
-    find: (req, res) => {
+    findAll: (req, res) => {
         Post.find(req.query).then(data => res.json(data));
+    },
+
+    findByType: (req, res) => {
+        console.log(req.query);
+        Post.find(req.query, 'title date timetoread score user').then(data => res.json(data));
     },
 
     save: (req, res) => {
@@ -12,11 +17,18 @@ module.exports = {
         const post = new Post(req.body);
         post.save().then((newPost) => {
             User.findOne({_id:newPost.user}).then((user)=>{
-                user.posts.push(newPost);
+                user.posts.push(
+                    {
+                        _id: newPost._id,
+                        title: newPost.title,
+                        timetoread: newPost.timetoread,
+                        score: newPost.score
+                    }
+                );
                 user.save();
             }).catch((err) => {
                 console.log('Error when trying to Find User' + err);
-            });;
+            });
             res.status(201).json({
                 success: true,
                 message: 'Post Saved',
@@ -48,7 +60,7 @@ module.exports = {
     },
  
     remove: (req, res) => {
-        Post.findOneAndDelete({ _id:req.body.id })
+        Post.findOneAndDelete({ _id:req.params.id })
           .then((deletedPost)=>{
             if(deletedPost) {
                 res.status(200).json({

@@ -11,20 +11,41 @@ let UserSchema = mongoose.Schema({
     description: String,
     profilepictureurl: String,
     inscriptiondate: Date,
-    followers: [ this ],
+    followers: [{
+        _id: String,
+        name: String,
+        surname: String,
+        profilepictureurl: String
+    }],
     favorites: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
+        _id: String,
+        title: String,
+        timetoread: Number,
+        score: Number,
+        user: {
+            name: String,
+            surname: String,
+            profilepictureurl: String
+        }
     }],
     bookmarks: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
+        _id: String,
+        title: String,
+        timetoread: Number,
+        score: Number,
+        user: {
+            name: String,
+            surname: String,
+            profilepictureurl: String
+        }
     }],
     posts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        _id: String,
+        title: String,
+        timetoread: Number,
+        score: Number
     }]
-});+
+});
 
 UserSchema.plugin(require('mongoose-bcrypt'));
 
