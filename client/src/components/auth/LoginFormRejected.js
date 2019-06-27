@@ -6,7 +6,11 @@ import Paper from "@material-ui/core/Paper";
 const useStyles = makeStyles(theme => ({
   root: {
     background: theme.palette.error.main,
-    padding: 10
+    padding: 10,
+    margin: "auto",
+    width: "85%",
+    marginTop: 10,
+    marginBottom: 10
   }
 }));
 

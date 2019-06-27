@@ -11,7 +11,6 @@ export function appLogin(email, password, dispatch) {
     })
   })
     .then(response => {
-      // If failed
       if (response.status === 201) {
         return response.json();
       } else if (response.status === 400) {
@@ -21,10 +20,9 @@ export function appLogin(email, password, dispatch) {
       }
     })
     .then(data => {
-      // Succeed
       dispatch({
         type: "APP_LOGIN_SUCCEED",
-        playload: {
+        payload: {
           token: data.token,
           logged: true,
           err: ""
@@ -32,7 +30,6 @@ export function appLogin(email, password, dispatch) {
       });
     })
     .catch(e => {
-      // Error
       dispatch({
         type: "APP_LOGIN_FAILED",
         payload: {
@@ -44,6 +41,11 @@ export function appLogin(email, password, dispatch) {
     });
 
   return {
-    type: "APP_LOGIN_REQUESTED"
+    type: "APP_LOGIN_REQUESTED",
+    payload: {
+      token: "",
+      logged: false,
+      err: ""
+    }
   };
 }
