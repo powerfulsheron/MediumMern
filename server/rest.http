@@ -6,7 +6,14 @@ Content-Type: application/json
     "surname": "Lorenzo",
     "birthdate": "2018-01-01",
     "email": "lorenzo.canavaggio3@laposte.net",
-    "password": "porunga"
+    "password": "porunga",
+    "description": "Eclatax French dev",
+    "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4",
+    "inscriptiondate": "2018-01-01",
+    "followers": [],
+    "favorites": [],
+    "bookmarks": [],
+    "posts": []
 }
 
 ###
@@ -24,33 +31,33 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/hello
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyMTk4OTYsImV4cCI6MTU2MTIyMzQ5Nn0.f6JhRqnTj2-BdtAeqv-ExCVQL6v7aONGfpwLZgxOcGo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
 POST http://localhost:3000/hello
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyMTk4OTYsImV4cCI6MTU2MTIyMzQ5Nn0.f6JhRqnTj2-BdtAeqv-ExCVQL6v7aONGfpwLZgxOcGo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
 GET http://localhost:3000/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
 GET http://localhost:3000/api/v1/users?_id=5d0e2fc7cb42b200bcf58b68
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyODkzNzksImV4cCI6MTU2MTI5Mjk3OX0.YwiLct9eUfqJ7Yp4UMiYaE2K3uS8nNRlX5mESRixVss
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
 GET http://localhost:3000/api/v1/users?_id=5d115961da3472001cc34fd8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTUzNTQzMSwiZXhwIjoxNTYxNTM5MDMxfQ.mlgXrMVAPkTD58oxbc7zRJRnQFHO8bFc_tixJHejAgk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
 DELETE http://localhost:3000/api/v1/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5MDMsImV4cCI6MTU2MTI5NzUwM30.1AB4Mz4E-b0F6gH0dlIltXoR2kADP-8_nH2RV3rCt7o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
     "id":"5d0f74710ed71f02364a0111"
@@ -59,7 +66,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5M
 ###
 PUT http://localhost:3000/api/v1/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5MDMsImV4cCI6MTU2MTI5NzUwM30.1AB4Mz4E-b0F6gH0dlIltXoR2kADP-8_nH2RV3rCt7o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
     "id":"5d0f74720ed71f02364a0112",
@@ -71,26 +78,84 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjEyOTM5M
 ###
 POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
-    "title": "SDREEEE",
-    "description": "SDREEEE",
-    "content": "SDREEEE",
+    "title": "POST 1",
+    "description": "Desc 1",
+    "content": "Content 1",
     "date": "2018-01-01",
-    "timetoread": 15,
-    "profilepictureurl": "SDREEEE",
-    "mainimage": "SDREEEE",
-    "score": 40
+    "timetoread": 1,
+    "mainimage": "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
+    "score": 1,
+    "user": {
+        "_id": "5d115961da3472001cc34fd8",
+        "name": "Canavaggio",
+        "surname": "Lorenzo",
+        "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+    },
+    "type": "5d1325e0af51080d8afdd7fa",
+    "tags": ["tests","docker","CI"],
+    "comments":[
+    {
+        "_id":"5d14e9abf0fabe8bfa027e3e",
+        "content": "trop bien j'ai kiffé wlh",
+        "date": "2018-01-01",
+        "user": {
+            "_id": "5d1325e0af51080d8afdd7fa",
+            "name": "Canavaggio",
+            "surname": "Lorenzo",
+            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        }
+    },
+    {
+        "_id":"5d14e9b75ac2c750e6a704ec",
+        "content": "trop bien j'ai kiffé wlh 2",
+        "date": "2018-01-01",
+        "user": {
+            "_id": "5d1325e0af51080d8afdd7fa",
+            "name": "Canavaggio",
+            "surname": "Lorenzo",
+            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        }
+    },
+    {
+        "_id":"5d14e9bdd635851ac58aaa8b",
+        "content": "trop bien j'ai kiffé wlh 3",
+        "date": "2018-01-01",
+        "user": {
+            "_id": "5d1325e0af51080d8afdd7fa",
+            "name": "Canavaggio",
+            "surname": "Lorenzo",
+            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        }
+    }
+    ]
 }
 
 ###
-
 GET http://localhost:3000/api/v1/types
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 
 ###
-
 GET http://localhost:3000/api/v1/tags
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTE1OTYxZGEzNDcyMDAxY2MzNGZkOCIsImlhdCI6MTU2MTQ3NDUwMCwiZXhwIjoxNTYxNDc4MTAwfQ.WCsau5QF7AKXo5qFcGJhbwZlWCGLAa654MkZvgefQfg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+###
+GET http://localhost:3000/api/v1/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+###
+GET http://localhost:3000/api/v1/posts?type=5d1325e0af51080d8afdd7fb
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+DELETE http://localhost:3000/api/v1/users?_id=
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+{
+    "id":"5d0f74710ed71f02364a0111"
+}

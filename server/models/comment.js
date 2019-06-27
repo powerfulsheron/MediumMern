@@ -4,8 +4,13 @@ const db = require('../lib/db');
 let CommentSchema = mongoose.Schema({
     content: String,
     date: Date,
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    post: {type: mongoose.Schema.Types.ObjectId, ref: 'Post'}
+    user: {
+        _id: String,
+        name: String,
+        surname: String,
+        profilepictureurl: String
+    },
+    post: String
 });
 
 const Comment = db.model('Comment', CommentSchema);
