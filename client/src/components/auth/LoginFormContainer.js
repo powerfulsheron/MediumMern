@@ -3,6 +3,7 @@ import { LoginForm } from "./LoginForm";
 import { connect } from "react-redux";
 import { appLogin } from "../../redux/actions/auth";
 import LoginFormRejected from "./LoginFormRejected";
+import { Typography } from "@material-ui/core";
 
 class LoginFormContainer extends React.Component {
   // State
@@ -30,18 +31,29 @@ class LoginFormContainer extends React.Component {
   };
 
   render() {
+    console.log(this.props.auth);
     return (
       <>
+        {/* Error message */}
         {this.props.auth.err !== "" && (
           <LoginFormRejected message={this.props.auth.err} />
         )}
-        <LoginForm
-          email={this.state.email}
-          password={this.state.password}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          handleValidation={this.validateForm()}
-        />
+
+        {/* Form */}
+        {this.props.auth.logged === false && (
+          <LoginForm
+            email={this.state.email}
+            password={this.state.password}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            handleValidation={this.validateForm()}
+          />
+        )}
+
+        {/* if already connected Form */}
+        {this.props.auth.logged === true && (
+          <Typography component="p">You are already logged in :)</Typography>
+        )}
       </>
     );
   }
