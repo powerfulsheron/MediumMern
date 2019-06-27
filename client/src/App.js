@@ -1,31 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TodoList from "./components/Todo/TodoList";
-//import TodoList from "./components/Todo/TodoList";
+import React from "react";
+import "./App.css";
+import HeaderComponent from "./components/header/HeaderComponent";
+import MainComponent from "./components/main/MainComponent";
+import { connect } from "react-redux";
+import { appVerifyToken } from "./redux/actions/auth";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <main>
-       <TodoList/>
-      </main>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    // Verification de la validité du Token avant le rendu
+    this.props.verifyToken();
+
+    // Render
+    return (
+      <div className="App">
+        <header>
+          <HeaderComponent />
+        </header>
+        <main>
+          <MainComponent />
+        </main>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+const mapActionToProps = dispatch => ({
+  verifyToken: () => dispatch(appVerifyToken(dispatch))
+});
+
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(App);
