@@ -8,7 +8,7 @@ let PostSchema = mongoose.Schema({
     date: Date,
     timetoread: Number,
     mainimage: String,
-    score: Number,
+    score: { type: Number, default: 0 },
     user: {
         _id: String,
         name: String,
