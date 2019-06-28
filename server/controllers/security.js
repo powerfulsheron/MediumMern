@@ -16,7 +16,7 @@ module.exports = {
     },
 
     register: (req, res) => {
-        const user = new User(req.body);  
+        const user = new User(req.body); 
         user.register()
         .then( data => {
           res.status(201).send(data);
