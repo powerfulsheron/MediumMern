@@ -1,3 +1,7 @@
+### -----------------------------------
+### REGISTER + LOGIN
+### -----------------------------------
+
 POST http://localhost:3000/register
 Content-Type: application/json
 
@@ -22,9 +26,9 @@ Content-Type: application/json
     "password":"porunga"
 }
 
-###
+### -----------------------------------
 ### Everything beyond this point need JWT Token
-###
+### -----------------------------------
 
 GET http://localhost:3000/hello
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
@@ -34,14 +38,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 POST http://localhost:3000/hello
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
-###
+### -----------------------------------
+### USER
+### -----------------------------------
 
 GET http://localhost:3000/api/v1/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
-GET http://localhost:3000/api/v1/users?_id=5d16698d4338ff001ce19d68
+GET http://localhost:3000/api/v1/users?_id=5d14efe41d55cf0212f57650
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
@@ -58,9 +64,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 {
     "_id":"5d14efe41d55cf0212f57650",
     "name": "Canavaggio",
-    "surname": "Henri2",
+    "surname": "Henri3",
     "birthdate": "2018-01-01"
 }
+
+### -----------------------------------
+### POST
+### -----------------------------------
 
 ### GET ALL POSTS (pas utilisé je pense)
 GET http://localhost:3000/api/v1/posts/all
@@ -88,16 +98,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
     "tags": ["tests","docker","CI"]
 }
 
-
 ### on peut utiliser PUT pour le score aussi
-
 PUT http://localhost:3000/api/v1/posts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
-    "_id": 
-    "title": "POST 1",
+    "_id": "5d1748c1ff4b6600299a3e98",
+    "title": "POST 1123",
     "description": "Desc 1",
     "content": "Content 1",
     "date": "2018-01-01",
@@ -108,5 +116,44 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 }
 
 ###
+DELETE http://localhost:3000/api/v1/posts?_id=5d168361c2fd3b02c3c1de0d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+### -----------------------------------
+### TYPE
+### -----------------------------------
+
 GET http://localhost:3000/api/v1/types
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+### -----------------------------------
+### COMMENT
+### -----------------------------------
+
+### Je remplis le user coté back
+POST http://localhost:3000/api/v1/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+{
+    "_idpost": "5d1748c1ff4b6600299a3e98",
+    "content": "Wlh ces tro b1",
+    "date": "2018-01-01"
+}
+
+### 
+PUT http://localhost:3000/api/v1/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+{
+    "_idpost": "5d1748c1ff4b6600299a3e98",
+    "_idcomment": "5d17541573312801e626f9a2",
+    "content": "Wlh ces tro b1 !!!!!!!!!!!!"
+}
+
+###
+DELETE  http://localhost:3000/api/v1/comments?_idpost=5d1748c1ff4b6600299a3e98&_idcomment=5d17541573312801e626f9a2
+Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
