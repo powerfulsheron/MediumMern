@@ -49,12 +49,13 @@ module.exports = {
     },
 
     update: (req, res) => {
-        Post.findOneAndUpdate({ _id:req.body.id }, { $set:req.body })
+        Post.findOneAndUpdate({ _id:req.body._id }, { $set:req.body })
         .then((updatedpost) => {
-        res.status(200).json({
-            success: true,
-            message: 'Post updated'
-        });
+            res.status(200).json({
+                success: true,
+                message: 'Post updated',
+                updatedPost:updatedpost
+            });
         })
         .catch((err) => {
             res.status(500).json({
@@ -65,13 +66,12 @@ module.exports = {
     },
  
     remove: (req, res) => {
-        Post.findOneAndDelete({ _id:req.params.id })
+        Post.findOneAndDelete({ _id:req.query._id })
           .then((deletedPost)=>{
             if(deletedPost) {
                 res.status(200).json({
                     success: true,
-                    message: 'Post deleted.',
-                    deletedPost:deletedPost
+                    message: 'Post deleted.'
                 });
               } else {
                 res.status(202).json({
