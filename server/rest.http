@@ -30,12 +30,7 @@ Content-Type: application/json
 ### Everything beyond this point need JWT Token
 ### -----------------------------------
 
-GET http://localhost:3000/hello
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
-
-###
-
-POST http://localhost:3000/hello
+GET http://localhost:3000/status
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ### -----------------------------------

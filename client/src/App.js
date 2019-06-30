@@ -3,8 +3,13 @@ import "./App.css";
 import HeaderComponent from "./components/header/HeaderComponent";
 import MainComponent from "./components/main/MainComponent";
 import { connect } from "react-redux";
+import { appVerifyToken } from "./redux/actions/auth";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.verifyToken();
+  }
+
   render() {
     // Render
     return (
@@ -24,6 +29,11 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
+const mapActionToProps = dispatch => ({
+  verifyToken: () => dispatch(appVerifyToken(dispatch))
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapActionToProps
 )(App);

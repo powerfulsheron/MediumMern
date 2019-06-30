@@ -1,4 +1,4 @@
-var jwtDecode = require('jwt-decode');
+var jwtDecode = require("jwt-decode");
 
 // ----------------------
 // ------   LOGIN  ------
@@ -55,34 +55,44 @@ export function appLogin(email, password, dispatch) {
 // ----------------------
 // ---  VERIFY TOKEN  ---
 // ----------------------
-/*export function appVerifyToken(dispatch) {
-  // Recupération en localStorage
-  var token = window.localStorage.getItem("token");
+export function appVerifyToken(dispatch) {
+  const token = window.localStorage.getItem("token");
 
-  jwt.verify(token, "MyBestSecret", (err, decodedToken) => {
-    if (err || !decodedToken) {
+  fetch("http://localhost:3000/status", {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json"
+    },
+    mode: "cors"
+  })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 401) {
+        return Promise.reject("Please reconnect to the app :)");
+      } else {
+        return Promise.reject("Unexpected error");
+      }
+    })
+    .then(data => {
+      console.log(data.status);
+    })
+    .catch(e => {
+      console.log(e);
       window.localStorage.removeItem("token");
       dispatch({
         type: "APP_INVALID_TOKEN",
         payload: {
-          err: err
+          err: e.error ? e.error : e
         }
       });
-    } else {
-      dispatch({
-        type: "APP_VALID_TOKEN",
-        payload: {
-          token: token,
-          userID: decodedToken.id
-        }
-      });
-    }
-  });
+    });
 
   return {
-    type: "APP_TOKEN_REQUESTED"
+    type: "APP_VERIFY_TOKEN"
   };
-}*/
+}
 
 // ----------------------
 // ---  VERIFY TOKEN  ---
