@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css";
-import HeaderComponent from "./components/header/HeaderComponent";
-import MainComponent from "./components/main/MainComponent";
 import { connect } from "react-redux";
 import { appVerifyToken } from "./redux/actions/auth";
+import OfflineRouter from "./routes/OfflineRouter";
 
 class App extends React.Component {
   componentDidMount() {
@@ -15,11 +14,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
-          <HeaderComponent />
+          <OfflineRouter />
         </header>
-        <main>
-          <MainComponent />
-        </main>
       </div>
     );
   }
