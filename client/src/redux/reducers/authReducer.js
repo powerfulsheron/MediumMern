@@ -13,39 +13,42 @@ const authReducer = (
       return state;
     }
 
-    // Token verify requested
-    case "APP_TOKEN_REQUESTED": {
-      return state;
-    }
-
     // Auth success
     case "APP_LOGIN_SUCCEED": {
-      state.userID = action.payload.userID;
-      state.token = action.payload.token;
-      state.logged = true;
-      return state;
-    }
-
-    // Valid Token
-    case "APP_VALID_TOKEN": {
-      state.userID = action.payload.userID;
-      state.token = action.payload.token;
-      state.logged = true;
-      return state;
+      return {
+        ...state,
+        userID: action.payload.userID,
+        token: action.payload.token,
+        logged: true
+      };
     }
 
     // Auth failed
     case "APP_LOGIN_FAILED": {
-      state.logged = false;
-      state.err = action.payload.err;
-      return state;
+      return {
+        ...state,
+        logged: true,
+        err: action.payload.err
+      };
     }
 
     // Invalid Token
     case "APP_INVALID_TOKEN": {
-      state.logged = false;
-      state.err = action.payload.err;
-      return state;
+      return {
+        ...state,
+        logged: false,
+        err: action.payload.err
+      };
+    }
+
+    case "APP_LOGOUT_DONE": {
+      return {
+        ...state,
+        userID: "",
+        token: "",
+        logged: false,
+        err: ""
+      };
     }
 
     // Default

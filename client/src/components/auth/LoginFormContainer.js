@@ -11,6 +11,7 @@ class LoginFormContainer extends React.Component {
     email: "",
     password: ""
   };
+  
 
   // Validation de formulaire
   validateForm = () => {
@@ -31,7 +32,6 @@ class LoginFormContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props.auth);
     return (
       <>
         {/* Error message */}

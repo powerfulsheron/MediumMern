@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+var jwtDecode = require('jwt-decode');
 
 // ----------------------
 // ------   LOGIN  ------
@@ -27,7 +27,7 @@ export function appLogin(email, password, dispatch) {
     .then(data => {
       // Sauvegarde en localStorage
       window.localStorage.setItem("token", data.token);
-      var decoded = jwt.verify(data.token, "MyBestSecret");
+      var decoded = jwtDecode(data.token);
 
       // Succeed
       dispatch({
@@ -55,7 +55,7 @@ export function appLogin(email, password, dispatch) {
 // ----------------------
 // ---  VERIFY TOKEN  ---
 // ----------------------
-export function appVerifyToken(dispatch) {
+/*export function appVerifyToken(dispatch) {
   // Recupération en localStorage
   var token = window.localStorage.getItem("token");
 
@@ -81,5 +81,15 @@ export function appVerifyToken(dispatch) {
 
   return {
     type: "APP_TOKEN_REQUESTED"
+  };
+}*/
+
+// ----------------------
+// ---  VERIFY TOKEN  ---
+// ----------------------
+export function appLogout() {
+  window.localStorage.removeItem("token");
+  return {
+    type: "APP_LOGOUT_DONE"
   };
 }
