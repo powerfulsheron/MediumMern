@@ -4,8 +4,8 @@ MERN (Mongo, Express, React, Node) medium.com clone
 # Installation 
 ```
 docker-compose up
-docker-compose run client npm install
-docker-compose run client npm install
+docker-compose exec client yarn install
+docker-compose exec server yarn install
 ```
 # Connect to mongo console and initialize 
 ```
