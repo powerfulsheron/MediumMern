@@ -1,3 +1,7 @@
+### -----------------------------------
+### REGISTER + LOGIN
+### -----------------------------------
+
 POST http://localhost:3000/register
 Content-Type: application/json
 
@@ -9,11 +13,7 @@ Content-Type: application/json
     "password": "porunga",
     "description": "Eclatax French dev",
     "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4",
-    "inscriptiondate": "2018-01-01",
-    "followers": [],
-    "favorites": [],
-    "bookmarks": [],
-    "posts": []
+    "inscriptiondate": "2018-01-01"
 }
 
 ###
@@ -26,9 +26,9 @@ Content-Type: application/json
     "password":"porunga"
 }
 
-###
+### -----------------------------------
 ### Everything beyond this point need JWT Token
-###
+### -----------------------------------
 
 GET http://localhost:3000/hello
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
@@ -38,44 +38,51 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 POST http://localhost:3000/hello
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
-###
+### -----------------------------------
+### USER
+### -----------------------------------
 
 GET http://localhost:3000/api/v1/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
-GET http://localhost:3000/api/v1/users?_id=5d0e2fc7cb42b200bcf58b68
+GET http://localhost:3000/api/v1/users?_id=5d14efe41d55cf0212f57650
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ###
 
-GET http://localhost:3000/api/v1/users?_id=5d115961da3472001cc34fd8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
-
-###
-
-DELETE http://localhost:3000/api/v1/users
+DELETE http://localhost:3000/api/v1/users?_id=5d14efe41d55cf0212f57650
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
-{
-    "id":"5d0f74710ed71f02364a0111"
-}
-
-###
+### Tout ce que tu mettra en param sera update, il faut que les param respectent le nom des props
 PUT http://localhost:3000/api/v1/users
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
-    "id":"5d0f74720ed71f02364a0112",
+    "_id":"5d14efe41d55cf0212f57650",
     "name": "Canavaggio",
-    "surname": "Henri",
+    "surname": "Henri3",
     "birthdate": "2018-01-01"
 }
 
-###
+### -----------------------------------
+### POST
+### -----------------------------------
+
+### GET ALL POSTS (pas utilisé je pense)
+GET http://localhost:3000/api/v1/posts/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+### GET POSTS PAR TYPE(id)
+GET http://localhost:3000/api/v1/posts?type=5d1325e0af51080d8afdd7fb
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+### Je remplis le user dans le back, le score est calculé par les utilisateurs
 POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
@@ -87,75 +94,66 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
     "date": "2018-01-01",
     "timetoread": 1,
     "mainimage": "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
-    "score": 1,
-    "user": {
-        "_id": "5d115961da3472001cc34fd8",
-        "name": "Canavaggio",
-        "surname": "Lorenzo",
-        "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
-    },
-    "type": "5d1325e0af51080d8afdd7fa",
-    "tags": ["tests","docker","CI"],
-    "comments":[
-    {
-        "_id":"5d14e9abf0fabe8bfa027e3e",
-        "content": "trop bien j'ai kiffé wlh",
-        "date": "2018-01-01",
-        "user": {
-            "_id": "5d1325e0af51080d8afdd7fa",
-            "name": "Canavaggio",
-            "surname": "Lorenzo",
-            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
-        }
-    },
-    {
-        "_id":"5d14e9b75ac2c750e6a704ec",
-        "content": "trop bien j'ai kiffé wlh 2",
-        "date": "2018-01-01",
-        "user": {
-            "_id": "5d1325e0af51080d8afdd7fa",
-            "name": "Canavaggio",
-            "surname": "Lorenzo",
-            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
-        }
-    },
-    {
-        "_id":"5d14e9bdd635851ac58aaa8b",
-        "content": "trop bien j'ai kiffé wlh 3",
-        "date": "2018-01-01",
-        "user": {
-            "_id": "5d1325e0af51080d8afdd7fa",
-            "name": "Canavaggio",
-            "surname": "Lorenzo",
-            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
-        }
-    }
-    ]
+    "type": "5d1325e0af51080d8afdd7fb",
+    "tags": ["tests","docker","CI"]
 }
 
-###
-GET http://localhost:3000/api/v1/types
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
-
-
-###
-GET http://localhost:3000/api/v1/tags
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
-
-###
-GET http://localhost:3000/api/v1/posts
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
-
-###
-GET http://localhost:3000/api/v1/posts?type=5d1325e0af51080d8afdd7fb
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
-
-DELETE http://localhost:3000/api/v1/users?_id=
+### on peut utiliser PUT pour le score aussi
+PUT http://localhost:3000/api/v1/posts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
-    "id":"5d0f74710ed71f02364a0111"
+    "_id": "5d1748c1ff4b6600299a3e98",
+    "title": "POST 1123",
+    "description": "Desc 1",
+    "content": "Content 1",
+    "date": "2018-01-01",
+    "timetoread": 1,
+    "mainimage": "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
+    "type": "5d1325e0af51080d8afdd7fa",
+    "tags": ["tests","docker","CI"]
 }
+
+###
+DELETE http://localhost:3000/api/v1/posts?_id=5d168361c2fd3b02c3c1de0d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+### -----------------------------------
+### TYPE
+### -----------------------------------
+
+GET http://localhost:3000/api/v1/types
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+### -----------------------------------
+### COMMENT
+### -----------------------------------
+
+### Je remplis le user coté back
+POST http://localhost:3000/api/v1/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+{
+    "_idpost": "5d1748c1ff4b6600299a3e98",
+    "content": "Wlh ces tro b1",
+    "date": "2018-01-01"
+}
+
+### 
+PUT http://localhost:3000/api/v1/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+{
+    "_idpost": "5d1748c1ff4b6600299a3e98",
+    "_idcomment": "5d17541573312801e626f9a2",
+    "content": "Wlh ces tro b1 !!!!!!!!!!!!"
+}
+
+###
+DELETE  http://localhost:3000/api/v1/comments?_idpost=5d1748c1ff4b6600299a3e98&_idcomment=5d17541573312801e626f9a2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4

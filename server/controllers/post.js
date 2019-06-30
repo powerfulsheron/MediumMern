@@ -8,15 +8,22 @@ module.exports = {
     },
 
     findByType: (req, res) => {
-        console.log(req.query);
         Post.find(req.query, 'title date timetoread score user').then(data => res.json(data));
     },
 
     save: (req, res) => {
-        req.body.user=req.user.id;
+
         const post = new Post(req.body);
+        User.findOne({_id:req.user.id}, '_id name surname profilepictureurl').then((user)=>{
+            post.user._id = user._id,
+            post.user.name = user.name,
+            post.user.surname = user.surname,
+            post.user.profilepictureurl = user.profilepictureurl
+        }).catch((err) => {
+            console.log('Error when trying to Find User' + err);
+        });
         post.save().then((newPost) => {
-            User.findOne({_id:newPost.user}).then((user)=>{
+            User.findOne({_id:newPost.user._id},'posts').then((user)=>{
                 user.posts.push(
                     {
                         _id: newPost._id,
@@ -26,14 +33,12 @@ module.exports = {
                     }
                 );
                 user.save();
-            }).catch((err) => {
-                console.log('Error when trying to Find User' + err);
-            });
-            res.status(201).json({
-                success: true,
-                message: 'Post Saved',
-                post:newPost
-            });
+                res.status(201).json({
+                    success: true,
+                    message: 'Post Saved',
+                    post:newPost
+                });
+            });;
         })
         .catch((err) => {
             res.status(500).json({
@@ -44,12 +49,13 @@ module.exports = {
     },
 
     update: (req, res) => {
-        Post.findOneAndUpdate({ _id:req.body.id }, { $set:req.body })
+        Post.findOneAndUpdate({ _id:req.body._id }, { $set:req.body })
         .then((updatedpost) => {
-        res.status(200).json({
-            success: true,
-            message: 'Post updated'
-        });
+            res.status(200).json({
+                success: true,
+                message: 'Post updated',
+                updatedPost:updatedpost
+            });
         })
         .catch((err) => {
             res.status(500).json({
@@ -60,13 +66,12 @@ module.exports = {
     },
  
     remove: (req, res) => {
-        Post.findOneAndDelete({ _id:req.params.id })
+        Post.findOneAndDelete({ _id:req.query._id })
           .then((deletedPost)=>{
             if(deletedPost) {
                 res.status(200).json({
                     success: true,
-                    message: 'Post deleted.',
-                    deletedPost:deletedPost
+                    message: 'Post deleted.'
                 });
               } else {
                 res.status(202).json({
