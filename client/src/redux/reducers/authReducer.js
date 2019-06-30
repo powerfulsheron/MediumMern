@@ -3,19 +3,34 @@ const authReducer = (
     userID: "",
     token: window.localStorage.getItem("token"),
     logged: window.localStorage.getItem("token") ? true : false,
-    err: ""
+    err: "",
+    success: ""
   },
   action
 ) => {
   switch (action.type) {
     // Auth requested
     case "APP_LOGIN_REQUESTED": {
-      return state;
+      return {
+        ...state,
+        success: ""
+      };
     }
 
     // Verification du token
     case "APP_VERIFY_TOKEN": {
-      return state;
+      return {
+        ...state,
+        success: ""
+      };
+    }
+
+    // Registration requested
+    case "APP_REGISTER_REQUESTED": {
+      return {
+        ...state,
+        success: ""
+      };
     }
 
     // Auth success
@@ -25,7 +40,16 @@ const authReducer = (
         userID: action.payload.userID,
         token: action.payload.token,
         logged: true,
-        err: ""
+        err: "",
+        success: "Login succeed !"
+      };
+    }
+
+    // Register succeed
+    case "APP_REGISTER_SUCCEED": {
+      return {
+        ...state,
+        success: "Register succeed !"
       };
     }
 
@@ -34,7 +58,16 @@ const authReducer = (
       return {
         ...state,
         logged: true,
-        err: action.payload.err
+        err: action.payload.err,
+        success: ""
+      };
+    }
+
+    case "APP_REGISTER_FAILED": {
+      return {
+        ...state,
+        err: action.payload.err,
+        success: ""
       };
     }
 
@@ -45,7 +78,8 @@ const authReducer = (
         userID: "",
         token: "",
         logged: false,
-        err: action.payload.err
+        err: action.payload.err,
+        success: ""
       };
     }
 
@@ -55,7 +89,8 @@ const authReducer = (
         userID: "",
         token: "",
         logged: false,
-        err: ""
+        err: "",
+        success: "Logout succeed !"
       };
     }
 

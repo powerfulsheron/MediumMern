@@ -1,8 +1,8 @@
 import React from "react";
+import { Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import RegisterForm from "./registerForm";
+import RegisterFormContainer from "./RegisterFormContainer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,17 +11,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function RegisterComponent() {
+export function RegisterPage() {
   const classes = useStyles();
 
   return (
-    <div>
+    <Container maxWidth="md">
       <Paper className={classes.root}>
         <Typography variant="h5" component="h3">
           Register
         </Typography>
-        <RegisterForm />
+        <RegisterFormContainer />
       </Paper>
-    </div>
+    </Container>
   );
 }

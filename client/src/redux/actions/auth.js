@@ -103,3 +103,49 @@ export function appLogout() {
     type: "APP_LOGOUT_DONE"
   };
 }
+
+// ----------------------
+// ---    REGISTER    ---
+// ----------------------
+export function appRegister(email, password, dispatch) {
+  console.log("Lancement");
+  fetch("http://localhost:3000/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    mode: "cors",
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  })
+    .then(response => {
+      if (response.status === 201) {
+        return response.json();
+      } else if (response.status === 400) {
+        return Promise.reject("Unexpected error");
+      } else {
+        console.log(500);
+        return Promise.reject("Unexpected error");
+      }
+    })
+    .then(data => {
+      // Succeed
+      dispatch({
+        type: "APP_REGISTER_SUCCEED"
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: "APP_REGISTER_FAILED",
+        payload: {
+          err: e.error ? e.error : e
+        }
+      });
+    });
+
+  return {
+    type: "APP_REGISTER_REQUESTED"
+  };
+}
