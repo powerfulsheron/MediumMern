@@ -57,12 +57,13 @@ const authReducer = (
     case "APP_LOGIN_FAILED": {
       return {
         ...state,
-        logged: true,
+        logged: false,
         err: action.payload.err,
         success: ""
       };
     }
 
+    // Register failed
     case "APP_REGISTER_FAILED": {
       return {
         ...state,
@@ -83,6 +84,7 @@ const authReducer = (
       };
     }
 
+    // Logout succeed
     case "APP_LOGOUT_DONE": {
       return {
         ...state,

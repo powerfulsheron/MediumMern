@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import { appVerifyToken } from "./redux/actions/auth";
-import OfflineRouter from "./routes/OfflineRouter";
+import MainRouter from "./routes/MainRouter";
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,9 +13,7 @@ class App extends React.Component {
     // Render
     return (
       <div className="App">
-        <header>
-          <OfflineRouter />
-        </header>
+          <MainRouter />
       </div>
     );
   }

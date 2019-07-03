@@ -79,7 +79,7 @@ export function appVerifyToken(dispatch) {
       console.log(data.status);
     })
     .catch(e => {
-      console.log(e);
+      console.error(e);
       window.localStorage.removeItem("token");
       dispatch({
         type: "APP_INVALID_TOKEN",
@@ -95,7 +95,7 @@ export function appVerifyToken(dispatch) {
 }
 
 // ----------------------
-// ---  VERIFY TOKEN  ---
+// ---     LOGOUT     ---
 // ----------------------
 export function appLogout() {
   window.localStorage.removeItem("token");
@@ -108,7 +108,6 @@ export function appLogout() {
 // ---    REGISTER    ---
 // ----------------------
 export function appRegister(email, password, dispatch) {
-  console.log("Lancement");
   fetch("http://localhost:3000/register", {
     method: "POST",
     headers: {
@@ -126,7 +125,6 @@ export function appRegister(email, password, dispatch) {
       } else if (response.status === 400) {
         return Promise.reject("Unexpected error");
       } else {
-        console.log(500);
         return Promise.reject("Unexpected error");
       }
     })
