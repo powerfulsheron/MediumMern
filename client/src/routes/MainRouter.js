@@ -4,6 +4,7 @@ import { LoginPage } from "../components/auth/LoginPage";
 import HeaderContainer from "../components/header/HeaderContainer";
 import { RegisterPage } from "../components/auth/RegisterPage";
 import { LogoutPage } from "./../components/auth/LogoutPage";
+import { PostsPage } from "../components/posts/PostsPage";
 
 export default function MainRouter() {
   return (
@@ -13,6 +14,8 @@ export default function MainRouter() {
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/logout" component={LogoutPage} />
+      <Route path="/posts" component={PostsPage} />
+      <Route path="/dashboard" />
     </Router>
   );
 }

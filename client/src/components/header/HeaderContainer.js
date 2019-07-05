@@ -19,7 +19,7 @@ class HeaderContainer extends React.Component {
     return (
       <div>
         <AppBar position="static" color="default">
-          <Container maxWidth="md">
+          <Container fixed>
             <Toolbar>
               <h2>Medium Mern</h2>
 
@@ -41,14 +41,8 @@ class HeaderContainer extends React.Component {
                   <Link style={this.style.links} to="/posts">
                     Posts
                   </Link>
-                  <Link style={this.style.links} to="/follows">
-                    Follows
-                  </Link>
-                  <Link style={this.style.links} to="/bookmarks">
-                    Bookmarks
-                  </Link>
-                  <Link style={this.style.links} to="/me">
-                    Profile
+                  <Link style={this.style.links} to="/dashboard">
+                    Dashboard
                   </Link>
                   <Link style={this.style.links} to="/logout">
                     Logout
