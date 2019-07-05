@@ -2,6 +2,7 @@ import React from "react";
 import RegisterForm from "./RegisterForm";
 import { connect } from "react-redux";
 import { appRegister } from "../../redux/actions/auth";
+import { Redirect } from "react-router-dom";
 
 class RegisterFormContainer extends React.Component {
   state = {
@@ -39,6 +40,7 @@ class RegisterFormContainer extends React.Component {
   render() {
     return (
       <>
+        {this.props.auth.logged && <Redirect to="/posts" />}
         <RegisterForm
           registerEmail={this.state.registerEmail}
           registerPassword={this.state.registerPassword}

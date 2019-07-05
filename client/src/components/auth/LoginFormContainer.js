@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { appLogin } from "../../redux/actions/auth";
 import LoginFormRejected from "./LoginFormRejected";
 import { Typography } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
 
 class LoginFormContainer extends React.Component {
   // State
@@ -51,7 +52,10 @@ class LoginFormContainer extends React.Component {
 
         {/* if already connected Form */}
         {this.props.auth.logged === true && (
-          <Typography component="p">You are already logged in :)</Typography>
+          <>
+            <Redirect to="/posts" />
+            <Typography component="p">You are already logged in :)</Typography>
+          </>
         )}
       </>
     );

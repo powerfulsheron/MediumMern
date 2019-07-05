@@ -5,10 +5,9 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    background: theme.palette.error.main,
     padding: 10,
     margin: "auto",
-    width: "85%",
+    width: "88%",
     marginTop: 10,
     marginBottom: 10
   }
@@ -17,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 const LoginFormRejected = ({ message }) => {
   const classes = useStyles();
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} elevation='1'>
       <Typography component="p">{message}</Typography>
     </Paper>
   );

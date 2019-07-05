@@ -13,7 +13,7 @@ class App extends React.Component {
     // Render
     return (
       <div className="App">
-          <MainRouter />
+        <MainRouter />
       </div>
     );
   }

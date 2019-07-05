@@ -70,7 +70,7 @@ export function appVerifyToken(dispatch) {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 401) {
-        return Promise.reject("Please reconnect to the app :)");
+        return Promise.reject("");
       } else {
         return Promise.reject("Unexpected error");
       }
