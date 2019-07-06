@@ -27,10 +27,10 @@ class HeaderContainer extends React.Component {
               {!this.props.auth.logged && (
                 <>
                   <Link style={this.style.links} to="/login">
-                    Login
+                    LOGIN
                   </Link>
                   <Link style={this.style.links} to="/register">
-                    Register
+                    REGISTER
                   </Link>
                 </>
               )}
@@ -39,13 +39,13 @@ class HeaderContainer extends React.Component {
               {this.props.auth.logged && (
                 <>
                   <Link style={this.style.links} to="/posts">
-                    Posts
+                    POSTS
                   </Link>
                   <Link style={this.style.links} to="/dashboard">
-                    Dashboard
+                    DASHBOARD
                   </Link>
                   <Link style={this.style.links} to="/logout">
-                    Logout
+                    LOGOUT
                   </Link>
                 </>
               )}

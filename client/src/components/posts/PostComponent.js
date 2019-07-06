@@ -21,10 +21,16 @@ const useStyles = makeStyles(theme => ({
   },
   type: {
     //transform: "rotate(90deg)",
-    padding: 10,
     width: 100,
     textAlign: "right",
     fontWeight: "bold"
+  },
+  typeColor: {
+    borderBottomLeftRadius: 5,
+    backgroundColor: "#f50057",
+    padding: 2,
+    paddingRight: 5,
+    color: "white"
   },
   details: {
     display: "flex",
@@ -90,7 +96,7 @@ export default function PostComponent({
           </CardContent>
         </div>
         <div className={classes.type}>
-          <span>JAVA</span>
+          <div className={classes.typeColor}>JAVA</div>
         </div>
       </Card>
     </>

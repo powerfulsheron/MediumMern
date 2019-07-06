@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PostsContainer from "./PostsContainer";
 
