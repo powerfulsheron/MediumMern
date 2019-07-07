@@ -1,5 +1,5 @@
 import React from "react";
-import { Toolbar } from "@material-ui/core";
+import { Toolbar, Typography } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 import { AppBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -7,11 +7,15 @@ import { connect } from "react-redux";
 
 class HeaderContainer extends React.Component {
   style = {
+    title: {
+      fontWeight: "bold"
+    },
     links: {
       marginLeft: 50,
-      textDecoration: "none",
-      fontWeight: "bold",
-      color: "black"
+      textDecoration: "none"
+    },
+    typo: {
+      fontWeight: "bold"
     }
   };
 
@@ -21,16 +25,30 @@ class HeaderContainer extends React.Component {
         <AppBar position="static" color="default">
           <Container fixed>
             <Toolbar>
-              <h2>Medium Mern</h2>
+              <Typography style={this.style.title} variant="h6">
+                MERDENIUM
+              </Typography>
 
               {/* MENU FOR LOGGED USERS */}
               {!this.props.auth.logged && (
                 <>
                   <Link style={this.style.links} to="/login">
-                    LOGIN
+                    <Typography
+                      style={this.style.typo}
+                      color="textPrimary"
+                      variant="button"
+                    >
+                      LOGIN
+                    </Typography>
                   </Link>
                   <Link style={this.style.links} to="/register">
-                    REGISTER
+                    <Typography
+                      style={this.style.typo}
+                      color="textPrimary"
+                      variant="button"
+                    >
+                      REGISTER
+                    </Typography>
                   </Link>
                 </>
               )}
@@ -39,13 +57,31 @@ class HeaderContainer extends React.Component {
               {this.props.auth.logged && (
                 <>
                   <Link style={this.style.links} to="/posts">
-                    POSTS
+                    <Typography
+                      style={this.style.typo}
+                      color="textPrimary"
+                      variant="button"
+                    >
+                      POSTS
+                    </Typography>
                   </Link>
                   <Link style={this.style.links} to="/dashboard">
-                    DASHBOARD
+                    <Typography
+                      style={this.style.typo}
+                      color="textPrimary"
+                      variant="button"
+                    >
+                      DASHBOARD
+                    </Typography>
                   </Link>
                   <Link style={this.style.links} to="/logout">
-                    LOGOUT
+                    <Typography
+                      style={this.style.typo}
+                      color="textPrimary"
+                      variant="button"
+                    >
+                      LOGOUT
+                    </Typography>
                   </Link>
                 </>
               )}
