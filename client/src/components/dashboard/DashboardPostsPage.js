@@ -1,7 +1,7 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core";
-import AccountContainer from "./AccountContainer";
+import DashboardPostsContainer from "./DashboardPostsContainer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,16 +12,15 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold"
   }
 }));
-
-export default function AccountPage() {
+export function DashboardPostsPage() {
   const classes = useStyles();
   return (
     <>
       <Typography className={classes.title} variant="h6">
-        ACCOUNT INFORMATION
+        MY POSTS
       </Typography>
 
-      <AccountContainer />
+      <DashboardPostsContainer />
     </>
   );
 }

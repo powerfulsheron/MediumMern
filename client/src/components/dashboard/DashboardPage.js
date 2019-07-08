@@ -6,6 +6,7 @@ import { MenuItem } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import AccountPage from "../account/AccountPage";
+import { DashboardPostsPage } from "./DashboardPostsPage";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,7 +76,7 @@ export function DashboardPage({ match }) {
         <Grid item lg={9} md={9} xs={11}>
           <span>
             {/* INSERT HERE CORRESPONDING COMPONENT */}
-            <Route path={`${match.url}`} exact />
+            <Route path={`${match.url}`} exact component={DashboardPostsPage} />
             <Route path={`${match.url}/account`} component={AccountPage} />
             <Route path={`${match.url}/follows`} />
           </span>
