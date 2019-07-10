@@ -1,5 +1,3 @@
-var jwtDecode = require("jwt-decode");
-
 // ----------------------
 // ------   LOGIN  ------
 // ----------------------
@@ -27,13 +25,11 @@ export function appLogin(email, password, dispatch) {
     .then(data => {
       // Sauvegarde en localStorage
       window.localStorage.setItem("token", data.token);
-      var decoded = jwtDecode(data.token);
 
       // Succeed
       dispatch({
         type: "APP_LOGIN_SUCCEED",
         payload: {
-          userID: decoded.id,
           token: data.token
         }
       });
@@ -79,7 +75,6 @@ export function appVerifyToken(dispatch) {
       console.log(data.status);
     })
     .catch(e => {
-      console.error(e);
       window.localStorage.removeItem("token");
       dispatch({
         type: "APP_INVALID_TOKEN",

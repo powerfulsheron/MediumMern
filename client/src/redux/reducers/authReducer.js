@@ -1,6 +1,5 @@
 const authReducer = (
   state = {
-    userID: "",
     token: window.localStorage.getItem("token"),
     logged: window.localStorage.getItem("token") ? true : false,
     err: "",
@@ -37,7 +36,6 @@ const authReducer = (
     case "APP_LOGIN_SUCCEED": {
       return {
         ...state,
-        userID: action.payload.userID,
         token: action.payload.token,
         logged: true,
         err: "",
@@ -76,7 +74,6 @@ const authReducer = (
     case "APP_INVALID_TOKEN": {
       return {
         ...state,
-        userID: "",
         token: "",
         logged: false,
         err: action.payload.err,
@@ -88,7 +85,6 @@ const authReducer = (
     case "APP_LOGOUT_DONE": {
       return {
         ...state,
-        userID: "",
         token: "",
         logged: false,
         err: "",

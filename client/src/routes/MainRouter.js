@@ -6,6 +6,7 @@ import { RegisterPage } from "../components/auth/RegisterPage";
 import { LogoutPage } from "./../components/auth/LogoutPage";
 import { PostsPage } from "../components/posts/PostsPage";
 import { DashboardPage } from "../components/dashboard/DashboardPage";
+import { NewPostPage } from "../components/posts/NewPostPage";
 
 export default function MainRouter() {
   return (
@@ -17,6 +18,7 @@ export default function MainRouter() {
       <Route path="/logout" component={LogoutPage} />
       <Route path="/posts" component={PostsPage} />
       <Route path="/dashboard" component={DashboardPage} />
+      <Route path="/newpost" component={NewPostPage} />
       <Route path="/" exact component={LoginPage} />
     </Router>
   );

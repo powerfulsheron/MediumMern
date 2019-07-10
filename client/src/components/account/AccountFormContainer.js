@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Formik, Form } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import { getLoggedUser } from "../../redux/actions/account";
+import { getLoggedUser, updateLoggedUser } from "../../redux/actions/account";
+import moment from "moment";
 
 class AccountFormContainer extends React.Component {
   render() {
@@ -14,33 +15,34 @@ class AccountFormContainer extends React.Component {
             enableReinitialize
             initialValues={this.props.account.user}
             onSubmit={(values, actions) => {
-              /* Lancement de l'action via REDUX */
+              
+              // Duplication
+              var payload = { ...values };
+
+              // Suppression des clefs inutiles
+              delete payload.bookmarks;
+              delete payload.favorites;
+              delete payload.followers;
+              delete payload.posts;
+              delete payload.__v;
+              delete payload.password;
+
+              this.props.updateLoggedUser(payload);
               actions.setSubmitting(false);
             }}
-            render={({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-              form
-            }) => (
-              <Form>
+            render={({ values, handleChange, handleBlur, isSubmitting }) => (
+              <Form autoComplete="off">
                 <TextField
                   id="email"
                   name="email"
                   type="text"
+                  autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
                   label="Email"
-                  placeholder="Your email"
                   margin="normal"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
+                  fullWidth
                 />
                 <br />
 
@@ -48,15 +50,13 @@ class AccountFormContainer extends React.Component {
                   id="name"
                   name="name"
                   type="text"
+                  autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.name}
                   label="Firstname"
-                  placeholder="Your firsname"
                   margin="normal"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
+                  fullWidth
                 />
                 <br />
 
@@ -64,15 +64,13 @@ class AccountFormContainer extends React.Component {
                   id="surname"
                   name="surname"
                   type="text"
+                  autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.surname}
                   label="Lastname"
-                  placeholder="Your lastname"
                   margin="normal"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
+                  fullWidth
                 />
                 <br />
 
@@ -83,11 +81,12 @@ class AccountFormContainer extends React.Component {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   label="Birthdate"
-                  defaultValue={values.birthdate}
+                  defaultValue={moment(values.birthdate).format("YYYY-MM-DD")}
                   margin="normal"
                   InputLabelProps={{
                     shrink: true
                   }}
+                  fullWidth
                 />
                 <br />
 
@@ -95,23 +94,23 @@ class AccountFormContainer extends React.Component {
                   id="description"
                   name="description"
                   type="text"
+                  autoComplete="false"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.description}
                   label="Description"
-                  placeholder="Your description"
                   margin="normal"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
+                  fullWidth
                 />
                 <br />
 
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   color="secondary"
                   type="submit"
+                  size="small"
                   disabled={isSubmitting}
+                  style={{ marginTop: 20 }}
                 >
                   Submit
                 </Button>
@@ -130,7 +129,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  getLoggedUser: () => dispatch(getLoggedUser(dispatch))
+  getLoggedUser: () => dispatch(getLoggedUser(dispatch)),
+  updateLoggedUser: user => dispatch(updateLoggedUser(user, dispatch))
 });
 
 export default connect(

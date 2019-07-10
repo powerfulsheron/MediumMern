@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getLoggedUser } from "../../redux/actions/account";
-import { Typography } from "@material-ui/core";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 class DashboardPostsContainer extends React.Component {
   componentWillMount() {
@@ -11,13 +11,9 @@ class DashboardPostsContainer extends React.Component {
   render() {
     return (
       <>
-        <Typography variant="h6">List of my posts :</Typography>
-        <br />
-        {JSON.stringify(this.props.account.posts)}
-        {JSON.stringify(this.props.account.user)}
-        <br /> <br />
-        <Typography variant="h6">Write a new post</Typography>
-        <br />
+        <p style={{ marginTop: 40 }}>
+          {JSON.stringify(this.props.account.user.posts)}
+        </p>
       </>
     );
   }

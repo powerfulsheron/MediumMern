@@ -74,6 +74,15 @@ class HeaderContainer extends React.Component {
                       DASHBOARD
                     </Typography>
                   </Link>
+                  <Link style={this.style.links} to="/newpost">
+                    <Typography
+                      style={this.style.typo}
+                      color="textPrimary"
+                      variant="button"
+                    >
+                      WRITE A POST
+                    </Typography>
+                  </Link>
                   <Link style={this.style.links} to="/logout">
                     <Typography
                       style={this.style.typo}

@@ -19,6 +19,9 @@ export function DashboardPostsPage() {
       <Typography className={classes.title} variant="h6">
         MY POSTS
       </Typography>
+      <Typography variant="subtitle2">
+        All your post and their popularity
+      </Typography>
 
       <DashboardPostsContainer />
     </>
