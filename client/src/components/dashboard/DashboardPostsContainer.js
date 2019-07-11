@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getLoggedUser } from "../../redux/actions/account";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import DashboardPostsTable from "./DashboardPostsTable";
 
 class DashboardPostsContainer extends React.Component {
   componentWillMount() {
@@ -11,9 +12,7 @@ class DashboardPostsContainer extends React.Component {
   render() {
     return (
       <>
-        <p style={{ marginTop: 40 }}>
-          {JSON.stringify(this.props.account.user.posts)}
-        </p>
+        <DashboardPostsTable posts={this.props.account.user.posts} />
       </>
     );
   }
