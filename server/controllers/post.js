@@ -8,7 +8,7 @@ module.exports = {
     },
 
     findByType: (req, res) => {
-        Post.find(req.query, 'title date timetoread score user').then(data => res.json(data));
+        Post.find(req.query, 'title date timetoread score user type').then(data => res.json(data));
     },
 
     save: (req, res) => {

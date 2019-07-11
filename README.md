@@ -1,42 +1,46 @@
 # MediumMern
+
 MERN (Mongo, Express, React, Node) medium.com clone
 
-# Installation 
+# Installation
+
 ```
 docker-compose up
 docker-compose exec client yarn install
 docker-compose exec server yarn install
 ```
-# Connect to mongo console and initialize 
+
+# Connect to mongo console and initialize
+
 ```
 docker exec -it [mongo_container] mongo -u root -p password
 use SampleCollections
 db.createCollection("types")
 db.types.insertMany(
-    [{ 
-        name: 'Rubax',
-        description: 'Everything related to Ruby'
+    [{
+        name: 'WEB',
+        description: 'Everything related to the web'
     },
     {
-        name: 'Javax',
-        description: 'Everything related to Java'
+        name: 'RESEAU',
+        description: 'Everything related to network'
     },
     {
-        name: 'Javascriptax',
-        description: 'Everything related to JS'
+        name: 'SYSTEME',
+        description: 'Everything related to systems'
     },
     {
-        name: 'PHPax',
-        description: 'Everything related to PHP'
+        name: 'TECH',
+        description: 'Everything related to technologies'
     },
     {
-        name: 'Pythonax',
-        description: 'Everything related to Python'
+        name: 'OTHER',
+        description: 'Everything related to anything'
     }]
 )
 db.createCollection("posts")
 db.posts.insertMany([
-    { 
+    {
         title: "POST 1",
         description: "Desc 1",
         content: "Content 1",
@@ -85,7 +89,7 @@ db.posts.insertMany([
         },
         ]
     },
-    { 
+    {
         title: "POST 2",
         description: "Desc 2",
         content: "Content 2",
@@ -134,7 +138,7 @@ db.posts.insertMany([
         },
         ]
     },
-    { 
+    {
         title: "POST 3",
         description: "Desc 3",
         content: "Content 3",
