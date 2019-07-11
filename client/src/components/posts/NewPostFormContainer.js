@@ -4,10 +4,12 @@ import { Paper, Typography } from "@material-ui/core";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import NewPostFormik from "./NewPostFormik";
 import { postAPost, resetStatus } from "../../redux/actions/posts";
+import { getAllTypes } from "../../redux/actions/types";
 
 class NewPostFormContainer extends React.Component {
   componentWillMount() {
     this.props.resetStatus();
+    this.props.getAllTypes();
   }
 
   render() {
@@ -19,7 +21,12 @@ class NewPostFormContainer extends React.Component {
               POST SAVED :)
             </Typography>
           )}
-          <NewPostFormik />
+
+          {this.props.types.loaded ? (
+            <NewPostFormik options={this.props.types} />
+          ) : (
+            "Loading..."
+          )}
         </Paper>
       </>
     );
@@ -29,12 +36,14 @@ class NewPostFormContainer extends React.Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   account: state.account,
-  posts: state.posts
+  posts: state.posts,
+  types: state.types
 });
 
 const mapActionToProps = dispatch => ({
   savePost: post => dispatch(postAPost(post, dispatch)),
-  resetStatus: () => dispatch(resetStatus())
+  resetStatus: () => dispatch(resetStatus()),
+  getAllTypes: () => dispatch(getAllTypes(dispatch))
 });
 
 export default connect(

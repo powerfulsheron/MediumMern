@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CardMedia from "@material-ui/core/CardMedia";
 import { Chip, Grid } from "@material-ui/core";
 import moment from "moment";
 
@@ -75,6 +74,9 @@ export default function PostComponent({
       case "SYSTEME":
         return { backgroundColor: "#f50057" };
 
+      case "TECH":
+        return { backgroundColor: "purple" };
+
       default:
         return { backgroundColor: "#37235e" };
     }
@@ -90,11 +92,7 @@ export default function PostComponent({
           alignItems="flex-start"
         >
           <Grid item sm={2}>
-            <CardMedia
-              className={classes.cover}
-              image={post.mainimage}
-              title="cardImage"
-            />
+            <img alt="complex" src={post.mainimage} width="100%" />
           </Grid>
           <Grid item sm={9}>
             <CardContent className={classes.content}>

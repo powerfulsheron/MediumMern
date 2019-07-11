@@ -1,11 +1,19 @@
 import React from "react";
 import { withFormik } from "formik";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { Grid } from "@material-ui/core";
+import {
+  Grid,
+  Select,
+  Input,
+  MenuItem,
+  InputLabel,
+  FormControl
+} from "@material-ui/core";
 import { TextField, Button } from "@material-ui/core";
 import { Form } from "formik";
 import { connect } from "react-redux";
 import { postAPost } from "../../redux/actions/posts";
+import { getAllTypes } from "../../redux/actions/types";
 
 // Form componant with Formik
 const NewPostFormik = ({
@@ -25,7 +33,7 @@ const NewPostFormik = ({
       alignItems="flex-start"
     >
       {/* ----- TITLE ----- */}
-      <Grid item lg={12}>
+      <Grid item lg={8}>
         <TextField
           id="title"
           name="title"
@@ -105,6 +113,31 @@ const NewPostFormik = ({
           rowsMax={10}
         />
       </Grid>
+      <br />
+
+      {/* ----- TYPE ----- */}
+      <Grid item lg={12}>
+        <FormControl>
+          <InputLabel htmlFor="type-helper">Type</InputLabel>
+          <Select
+            id="type"
+            name="type"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.type}
+            fullWidth
+            input={<Input name="type" id="type-helper" />}
+          >
+            {!values.typeOption.loaded && <MenuItem value="">Empty</MenuItem>}
+            {values.typeOption.types &&
+              values.typeOption.types.map(option => (
+                <MenuItem key={option._id} value={option._id}>
+                  {option.name}
+                </MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+      </Grid>
     </Grid>
 
     {/* ----- WYSIWYG ----- */}
@@ -124,7 +157,7 @@ const NewPostFormik = ({
       type="submit"
       size="small"
       disabled={isSubmitting}
-      style={{ marginTop: 20 }}
+      style={{ marginTop: 40 }}
     >
       Submit
     </Button>
@@ -133,13 +166,17 @@ const NewPostFormik = ({
 
 // Formik Enhancer
 const formikEnhancer = withFormik({
-  mapPropsToValues: props => ({
-    title: "",
-    description: "",
-    timetoread: 1,
-    mainimage: "",
-    content: ""
-  }),
+  mapPropsToValues: props => {
+    return {
+      title: "",
+      description: "",
+      timetoread: 1,
+      mainimage: "",
+      content: "",
+      type: "",
+      typeOption: props.options
+    };
+  },
 
   // Submit
   handleSubmit: (values, { props, setSubmitting }) => {
@@ -160,12 +197,14 @@ const formikEnhancer = withFormik({
 const mapStateToProps = state => ({
   auth: state.auth,
   account: state.account,
-  posts: state.posts
+  posts: state.posts,
+  types: state.types
 });
 
 // Redux map actions to props
 const mapActionToProps = dispatch => ({
-  savePost: post => dispatch(postAPost(post, dispatch))
+  savePost: post => dispatch(postAPost(post, dispatch)),
+  getAllTypes: () => dispatch(getAllTypes(dispatch))
 });
 
 // Redux connect
