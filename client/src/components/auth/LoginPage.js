@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
     margin: 50
+  },
+  title: {
+    fontWeight: "bold"
   }
 }));
 
@@ -16,8 +19,8 @@ export function LoginPage() {
   return (
     <Container maxWidth="md">
       <Paper className={classes.root}>
-        <Typography variant="h5" component="h3">
-          Login
+        <Typography variant="h6" className={classes.title}>
+          LOGIN
         </Typography>
         <LoginFormContainer />
       </Paper>

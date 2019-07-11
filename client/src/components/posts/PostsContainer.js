@@ -4,11 +4,17 @@ import PostComponent from "./PostComponent";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Redirect } from "react-router-dom";
+import { getAllPosts } from "../../redux/actions/posts";
+import { Typography } from "@material-ui/core";
 
 class PostsContainer extends React.Component {
   state = {
     activeTab: 0
   };
+
+  componentWillMount() {
+    this.props.getAllPosts();
+  }
 
   handleChange = (event, newValue) => {
     this.setState({ ...this.state, activeTab: newValue });
@@ -28,22 +34,35 @@ class PostsContainer extends React.Component {
           <Tab disableRipple={true} label="Posts per type" />
           <Tab disableRipple={true} label="Bookmarked posts" />
         </Tabs>
-        <PostComponent />
-        <PostComponent />
-        <PostComponent />
-        <PostComponent />
-        <PostComponent />
-        <PostComponent />
+
+        {/* ALL POSTS */}
+        {this.props.posts.postsLoaded &&
+          this.props.posts.posts.map(post => (
+            <PostComponent key={post._id} post={post} />
+          ))}
+
+        {/* Loading */}
+        {!this.props.posts.postsLoaded && (
+          <Typography
+            variant="subtitle1"
+            style={{ textAlign: "center", marginTop: 50 }}
+          >
+            Loading...
+          </Typography>
+        )}
       </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  posts: state.posts
 });
 
-const mapActionToProps = dispatch => ({});
+const mapActionToProps = dispatch => ({
+  getAllPosts: () => dispatch(getAllPosts(dispatch))
+});
 
 export default connect(
   mapStateToProps,

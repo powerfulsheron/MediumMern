@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
     margin: 50
+  },
+  title: {
+    fontWeight: "bold"
   }
 }));
 
@@ -17,8 +20,8 @@ export function RegisterPage() {
   return (
     <Container maxWidth="md">
       <Paper className={classes.root}>
-        <Typography variant="h5" component="h3">
-          Register
+        <Typography variant="h6" className={classes.title}>
+          REGISTER
         </Typography>
         <RegisterFormContainer />
       </Paper>

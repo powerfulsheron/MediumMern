@@ -4,7 +4,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
-import { Chip } from "@material-ui/core";
+import { Chip, Grid } from "@material-ui/core";
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -27,7 +28,6 @@ const useStyles = makeStyles(theme => ({
   },
   typeColor: {
     borderBottomLeftRadius: 5,
-    backgroundColor: "#f50057",
     padding: 2,
     paddingRight: 5,
     color: "white"
@@ -43,61 +43,114 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 10
   },
   cover: {
-    width: 200
+    width: 300
   }
 }));
 
 export default function PostComponent({
   post = {
-    id: "1",
-    title: "Titre de l'article",
+    _id: "1",
+    title: "Comment simuler un article",
     description:
       "Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard.",
-    image: "https://avatars1.githubusercontent.com/u/11267371?s=460&v=4"
+    image: "https://avatars1.githubusercontent.com/u/11267371?s=460&v=4",
+    score: "4",
+    date: moment().format("DD-MM-YYYY"),
+    timetoread: 5,
+    user: { name: "Maxime", surname: "AUBLET" },
+    tags: ["Angular", "Java"],
+    type: "WEB"
   }
 }) {
   const classes = useStyles();
 
+  const setBackgroundType = () => {
+    switch (post.type) {
+      case "WEB":
+        return { backgroundColor: "#035EE8" };
+
+      case "RESEAU":
+        return { backgroundColor: "#00A92E" };
+
+      case "SYSTEME":
+        return { backgroundColor: "#f50057" };
+
+      default:
+        return { backgroundColor: "#37235e" };
+    }
+  };
+
   return (
     <>
       <Card className={classes.card}>
-        <CardMedia
-          className={classes.cover}
-          image={post.image}
-          title="cardImage"
-        />
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography className={classes.title} component="h5" variant="h5">
-              {post.title}
-              <Chip
-                className={classes.chip}
-                variant="outlined"
-                key="chip1"
-                label="Angulax"
-                size="small"
-              />
-              <Chip
-                className={classes.chip}
-                variant="outlined"
-                key="chip2"
-                label="Javax"
-                size="small"
-              />
-            </Typography>
-            <Typography
-              className={classes.description}
-              variant="subtitle2"
-              color="textSecondary"
-            >
-              {post.description}
-            </Typography>
-            Lorenzo Canavaggio - 21/07/2019
-          </CardContent>
-        </div>
-        <div className={classes.type}>
-          <div className={classes.typeColor}>JAVA</div>
-        </div>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+        >
+          <Grid item sm={2}>
+            <CardMedia
+              className={classes.cover}
+              image={post.mainimage}
+              title="cardImage"
+            />
+          </Grid>
+          <Grid item sm={9}>
+            <CardContent className={classes.content}>
+              {/* - TITLE - */}
+              <Typography className={classes.title} component="h5" variant="h5">
+                {post.title}
+
+                {/* - Tags - */}
+                {post.tags.map(tag => (
+                  <Chip
+                    className={classes.chip}
+                    variant="outlined"
+                    key={tag}
+                    label={tag}
+                    size="small"
+                  />
+                ))}
+              </Typography>
+
+              {/* - DESCRIPTION - */}
+              <Typography
+                className={classes.description}
+                variant="subtitle2"
+                color="textSecondary"
+              >
+                {post.description}
+              </Typography>
+
+              {/* - KPI - */}
+              <Typography
+                variant="caption"
+                component="p"
+                style={{ textAlign: "right" }}
+              >
+                {"Score : " +
+                  post.score +
+                  " - Time to read : " +
+                  post.timetoread}
+              </Typography>
+
+              {/* - AUTHOR AND DATE - */}
+              {post.user && (
+                <Typography variant="caption" style={{ fontWeight: "bold" }}>
+                  {post.user.name + " " + post.user.surname + " - " + post.date}
+                </Typography>
+              )}
+            </CardContent>
+          </Grid>
+          <Grid item sm={1}>
+            <div className={classes.type}>
+              <div className={classes.typeColor} style={setBackgroundType()}>
+                {post.type}
+              </div>
+            </div>
+          </Grid>
+        </Grid>
       </Card>
     </>
   );
