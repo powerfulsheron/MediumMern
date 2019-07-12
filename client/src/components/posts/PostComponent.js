@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { Chip, Grid } from "@material-ui/core";
+import { Chip, Grid, ButtonBase } from "@material-ui/core";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -43,22 +44,30 @@ const useStyles = makeStyles(theme => ({
   },
   cover: {
     width: 300
+  },
+  image: {
+    width: 156,
+    height: 156
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%"
   }
 }));
 
 export default function PostComponent({
   post = {
-    _id: "1",
-    title: "Comment simuler un article",
-    description:
-      "Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard.",
-    image: "https://avatars1.githubusercontent.com/u/11267371?s=460&v=4",
-    score: "4",
+    _id: "",
+    title: "",
+    description: "",
+    score: "",
     date: moment().format("DD-MM-YYYY"),
     timetoread: 5,
-    user: { name: "Maxime", surname: "AUBLET" },
-    tags: ["Angular", "Java"],
-    type: "WEB"
+    user: { name: "", surname: "" },
+    tags: [],
+    type: ""
   }
 }) {
   const classes = useStyles();
@@ -88,11 +97,19 @@ export default function PostComponent({
         <Grid
           container
           direction="row"
-          justify="flex-start"
+          justify="space-between"
           alignItems="flex-start"
         >
-          <Grid item sm={2}>
-            <img alt="complex" src={post.mainimage} width="100%" />
+          <Grid item>
+            <Link to={"/posts/" + post._id}>
+              <ButtonBase className={classes.image}>
+                <img
+                  className={classes.img}
+                  alt="complex"
+                  src={post.mainimage}
+                />
+              </ButtonBase>
+            </Link>
           </Grid>
           <Grid item sm={9}>
             <CardContent className={classes.content}>
@@ -141,7 +158,7 @@ export default function PostComponent({
               )}
             </CardContent>
           </Grid>
-          <Grid item sm={1}>
+          <Grid item>
             <div className={classes.type}>
               <div className={classes.typeColor} style={setBackgroundType()}>
                 {post.type}

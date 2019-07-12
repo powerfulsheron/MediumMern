@@ -30,7 +30,6 @@ class PostsContainer extends React.Component {
           onChange={this.handleChange}
         >
           <Tab disableRipple={true} label="Recent posts" />
-          <Tab disableRipple={true} label="Posts per tag" />
           <Tab disableRipple={true} label="Posts per type" />
           <Tab disableRipple={true} label="Bookmarked posts" />
         </Tabs>

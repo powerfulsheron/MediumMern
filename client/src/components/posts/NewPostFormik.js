@@ -117,7 +117,7 @@ const NewPostFormik = ({
 
       {/* ----- TYPE ----- */}
       <Grid item lg={12}>
-        <FormControl>
+        <FormControl style={{ width: "100%" }}>
           <InputLabel htmlFor="type-helper">Type</InputLabel>
           <Select
             id="type"

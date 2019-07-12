@@ -7,19 +7,28 @@ import { LogoutPage } from "./../components/auth/LogoutPage";
 import { PostsPage } from "../components/posts/PostsPage";
 import { DashboardPage } from "../components/dashboard/DashboardPage";
 import { NewPostPage } from "../components/posts/NewPostPage";
+import { PostDetailPage } from "../components/posts/PostDetailPage";
 
 export default function MainRouter() {
   return (
     <Router>
       <HeaderContainer />
 
+      {/* --- AUTH --- */}
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/logout" component={LogoutPage} />
-      <Route path="/posts" component={PostsPage} />
-      <Route path="/dashboard" component={DashboardPage} />
-      <Route path="/newpost" component={NewPostPage} />
       <Route path="/" exact component={LoginPage} />
+
+      {/* --- POSTS --- */}
+      <Route path="/posts" exact component={PostsPage} />
+      <Route path="/posts/:id" exact component={PostDetailPage} />
+
+      {/* --- DASHBOARD --- */}
+      <Route path="/dashboard" component={DashboardPage} />
+
+      {/* --- NEW POSTS --- */}
+      <Route path="/newpost" component={NewPostPage} />
     </Router>
   );
 }
