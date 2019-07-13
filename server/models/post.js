@@ -10,12 +10,15 @@ let PostSchema = mongoose.Schema({
     mainimage: String,
     score: { type: Number, default: 0 },
     user: {
-        _id: String,
-        name: String,
-        surname: String,
-        profilepictureurl: String
+        _id: {type : String},
+        name: {type : String},
+        surname: {type : String},
+        profilepictureurl: {type : String}
     },
-    type: String,
+    type: {
+        _id: {type : String},
+        name: {type : String}
+    },
     tags: [String],
     comments:[{
         id: mongoose.Schema.Types.ObjectId,

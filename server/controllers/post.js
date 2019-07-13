@@ -1,5 +1,6 @@
 const Post = require('../models/post.js');
 const User = require('../models/user.js');
+const Type = require('../models/type.js');
 
 module.exports = {
 
@@ -12,39 +13,49 @@ module.exports = {
     },
 
     save: (req, res) => {
-
-        const post = new Post(req.body);
-        User.findOne({_id:req.user.id}, '_id name surname profilepictureurl').then((user)=>{
-            post.user._id = user._id,
-            post.user.name = user.name,
-            post.user.surname = user.surname,
-            post.user.profilepictureurl = user.profilepictureurl
-        }).catch((err) => {
-            console.log('Error when trying to Find User' + err);
-        });
-        post.save().then((newPost) => {
-            User.findOne({_id:newPost.user._id},'posts').then((user)=>{
-                user.posts.push(
-                    {
-                        _id: newPost._id,
-                        title: newPost.title,
-                        timetoread: newPost.timetoread,
-                        score: newPost.score
+        Type.findOne({_id:req.body.type},'name').then((type)=>{
+            var post = new Post(req.body);
+            post.type = {
+                _id : req.body.type,
+                name : type.name
+            }
+            post.save().then((newPost) => {
+                User.findOne({_id:req.user.id}, 'name surname profilepictureurl posts').then((user)=>{
+                    newPost.user = {
+                        _id : req.user.id,
+                        name : user.name,
+                        surname : user.surname,
+                        profilepictureurl : user.profilepictureurl
                     }
-                );
-                user.save();
-                res.status(201).json({
-                    success: true,
-                    message: 'Post Saved',
-                    post:newPost
+                    newPost.save().then((finalPost) => {
+                        user.posts.push(
+                            {
+                                _id : finalPost._id,
+                                title : finalPost.title,
+                                timetoread : finalPost.timetoread,
+                                score : finalPost.score
+                            }
+                        );
+                        user.save();
+                        res.status(201).json({
+                            success: true,
+                            message: 'Post Saved',
+                            post:finalPost
+                        });
+                    })
+                    .catch((err) => {
+                        res.status(500).json({
+                            success: false,
+                            message: 'Error when trying to Save Post' + err
+                        });
+                    });
+
+                }).catch((err) => {
+                    console.log('Error when trying to Find User' + err);
                 });
-            });;
-        })
-        .catch((err) => {
-            res.status(500).json({
-                success: false,
-                message: 'Error when trying to Save Post' + err
             });
+        }).catch((err) => {
+            console.log('Error when trying to Find Type' + err);
         });
     },
 
