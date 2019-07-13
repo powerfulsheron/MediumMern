@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Formik, Form } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import { getLoggedUser, updateLoggedUser } from "../../redux/actions/account";
+import { updateLoggedUser } from "../../redux/actions/account";
 import moment from "moment";
 
 class AccountFormContainer extends React.Component {
@@ -13,19 +13,20 @@ class AccountFormContainer extends React.Component {
         {this.props.account.loaded === true && (
           <Formik
             enableReinitialize
-            initialValues={this.props.account.user}
+            initialValues={{
+              email: "",
+              name: "",
+              surname: "",
+              birthdate: moment().format("YYYY-MM-DD"),
+              description: "",
+              ...this.props.account.user
+            }}
             onSubmit={(values, actions) => {
-              
               // Duplication
               var payload = { ...values };
 
               // Suppression des clefs inutiles
-              delete payload.bookmarks;
-              delete payload.favorites;
-              delete payload.followers;
-              delete payload.posts;
               delete payload.__v;
-              delete payload.password;
 
               this.props.updateLoggedUser(payload);
               actions.setSubmitting(false);
@@ -129,7 +130,6 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  getLoggedUser: () => dispatch(getLoggedUser(dispatch)),
   updateLoggedUser: user => dispatch(updateLoggedUser(user, dispatch))
 });
 

@@ -4,6 +4,7 @@ import { Container } from "@material-ui/core";
 import { AppBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { getLoggedUser } from "../../redux/actions/account";
 
 class HeaderContainer extends React.Component {
   style = {
@@ -18,6 +19,12 @@ class HeaderContainer extends React.Component {
       fontWeight: "bold"
     }
   };
+
+  // retrieve user info
+  userinfo() {
+    this.props.getCurrentUser();
+    return "";
+  }
 
   render() {
     return (
@@ -56,6 +63,7 @@ class HeaderContainer extends React.Component {
               {/* MENU FOR NOT LOGGED USERS */}
               {this.props.auth.logged && (
                 <>
+                  {this.userinfo()}
                   <Link style={this.style.links} to="/posts">
                     <Typography
                       style={this.style.typo}
@@ -106,4 +114,11 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(HeaderContainer);
+const mapActionToProps = dispatch => ({
+  getCurrentUser: () => dispatch(getLoggedUser(dispatch))
+});
+
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(HeaderContainer);

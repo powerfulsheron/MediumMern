@@ -26,6 +26,7 @@ export function getLoggedUser(dispatch) {
       }
     })
     .then(data => {
+      delete data[0].password;
       dispatch({
         type: "APP_GET_CURRENT_USER_SUCCEED",
         payload: {
@@ -54,7 +55,7 @@ export function getLoggedUser(dispatch) {
 export function updateLoggedUser(user, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecode(TOKEN) : "";
-
+  
   fetch(BASE_URL + "/users", {
     method: "PUT",
     headers: {
@@ -62,13 +63,13 @@ export function updateLoggedUser(user, dispatch) {
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ ...user, _id: DECODED_TOKEN.id })
+    body: JSON.stringify({ ...user, id: DECODED_TOKEN.id })
   })
     .then(response => {
       if (response.status === 200) {
         return response.json();
       } else {
-        return response.json();
+        return new Promise("error");
       }
     })
     .then(data => {
@@ -81,7 +82,6 @@ export function updateLoggedUser(user, dispatch) {
       });
     })
     .catch(e => {
-      console.error(e);
       dispatch({
         type: "APP_PUT_CURRENT_USER_FAILED",
         payload: {
@@ -92,5 +92,12 @@ export function updateLoggedUser(user, dispatch) {
 
   return {
     type: "APP_PUT_CURRENT_USER_REQUESTED"
+  };
+}
+
+// RESET CURRENT USER
+export function resetCurrentUser() {
+  return {
+    type: "APP_ACCOUNT_RESET"
   };
 }

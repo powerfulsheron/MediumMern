@@ -46,7 +46,11 @@ export default function PostDetailComponent({
     user: { name: "", surname: "" },
     tags: [],
     type: ""
-  }
+  },
+  handleSaveToBookmarks,
+  handleFavorite,
+  bookmarked,
+  liked
 }) {
   const classes = useStyles();
 
@@ -114,7 +118,9 @@ export default function PostDetailComponent({
               <Button
                 variant="outlined"
                 size="small"
+                disabled={bookmarked}
                 className={classes.button}
+                onClick={handleSaveToBookmarks}
               >
                 <Bookmarks
                   className={clsx(classes.leftIcon, classes.iconSmall)}
@@ -129,6 +135,8 @@ export default function PostDetailComponent({
                 variant="outlined"
                 size="small"
                 className={classes.button}
+                disabled={liked}
+                onClick={handleFavorite}
               >
                 <FavoriteOutlined
                   color="secondary"

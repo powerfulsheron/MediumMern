@@ -141,3 +141,48 @@ export function getOnePost(postId, dispatch) {
     type: "APP_GET_ONE_POST_REQUESTED"
   };
 }
+
+// PUT /posts
+export function updateLoggedUser(user, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+  const DECODED_TOKEN = TOKEN ? jwtDecoder(TOKEN) : "";
+
+  fetch(BASE_URL + "/users", {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    mode: "cors",
+    body: JSON.stringify({ ...user, _id: DECODED_TOKEN.id })
+  })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        return response.json();
+      }
+    })
+    .then(data => {
+      dispatch({
+        type: "APP_PUT_CURRENT_USER_SUCCEED",
+        payload: {
+          response: data,
+          user: user
+        }
+      });
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch({
+        type: "APP_PUT_CURRENT_USER_FAILED",
+        payload: {
+          err: e.error ? e.error : e
+        }
+      });
+    });
+
+  return {
+    type: "APP_PUT_CURRENT_USER_REQUESTED"
+  };
+}
