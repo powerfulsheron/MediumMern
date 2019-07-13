@@ -89,7 +89,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
     "date": "2018-01-01",
     "timetoread": 1,
     "mainimage": "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
-    "type": "5d1325e0af51080d8afdd7fb",
+    "type": "5d2813b40eb78a96bc5f3780",
     "tags": ["tests","docker","CI"]
 }
 
@@ -106,7 +106,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
     "date": "2018-01-01",
     "timetoread": 1,
     "mainimage": "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
-    "type": "5d1325e0af51080d8afdd7fa",
+    "type": "5d2813b40eb78a96bc5f3780",
     "tags": ["tests","docker","CI"]
 }
 
