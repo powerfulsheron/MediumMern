@@ -142,7 +142,6 @@ export default function PostComponent({
               <Typography
                 variant="caption"
                 component="p"
-                style={{ textAlign: "right" }}
               >
                 {"Score : " +
                   post.score +

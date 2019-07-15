@@ -16,9 +16,10 @@ class PostDetailContainer extends React.Component {
 
   // Handle btn to bookmark
   handleSaveToBookmarks = () => {
+    var userPayload;
     if (!this.isBookmarked(this.props.posts.post)) {
       this.props.account.user.bookmarks.push(this.props.posts.post);
-      var userPayload = { ...this.props.account.user };
+      userPayload = { ...this.props.account.user };
       delete userPayload.__v;
       this.props.updateUser(userPayload);
     } else {
@@ -26,7 +27,7 @@ class PostDetailContainer extends React.Component {
         return this.props.posts.post._id !== element._id;
       });
       this.props.account.user.bookmarks = new_bookmarks;
-      var userPayload = { ...this.props.account.user };
+      userPayload = { ...this.props.account.user };
       delete userPayload.__v;
       this.props.updateUser(userPayload);
     }
@@ -34,9 +35,10 @@ class PostDetailContainer extends React.Component {
 
   // Handle btn favorite
   handleFavorite = () => {
+    var userPayload;
     if (!this.isFavorite(this.props.posts.post)) {
       this.props.account.user.favorites.push(this.props.posts.post);
-      var userPayload = { ...this.props.account.user };
+      userPayload = { ...this.props.account.user };
       delete userPayload.__v;
       this.props.updateUser(userPayload);
     } else {
@@ -44,7 +46,7 @@ class PostDetailContainer extends React.Component {
         return this.props.posts.post._id !== element._id;
       });
       this.props.account.user.favorites = new_favorites;
-      var userPayload = { ...this.props.account.user };
+      userPayload = { ...this.props.account.user };
       delete userPayload.__v;
       this.props.updateUser(userPayload);
     }
