@@ -5,6 +5,7 @@ const postController = require('../controllers/post.js');
 router.get('/', postController.findByType);
 router.get('/all', postController.findAll);
 router.post('/', postController.save);
+router.post('/like', postController.incrementScore);
 router.put ('/', postController.update);
 router.delete('/', postController.remove);
 

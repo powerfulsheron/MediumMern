@@ -72,24 +72,36 @@ module.exports = {
  
     remove: (req, res) => {
         Post.findOneAndDelete({ _id:req.query._id })
-          .then((deletedPost)=>{
-            if(deletedPost) {
-                res.status(200).json({
-                    success: true,
-                    message: 'Post deleted.'
-                });
-              } else {
-                res.status(202).json({
-                    success: false,
-                    message: 'No Post match the query'
-                });
-              }          
-            }
-          )
-          .catch((err) => res.status(500).json({
+        .then((deletedPost)=>{
+        if(deletedPost) {
+            res.status(200).json({
+                success: true,
+                message: 'Post deleted.'
+            });
+            } else {
+            res.status(202).json({
+                success: false,
+                message: 'No Post match the query'
+            });
+            }          
+        }
+        )
+        .catch((err) => res.status(500).json({
             success: false,
             message: err
-          }));
-      }
+        }));
+    },
+
+    incrementScore: (req, res) => {
+        Post.findOneAndUpdate({ _id:req.body._id }, { $inc:{ score: 1 } }).then(()=>{
+            res.status(200).json({
+                success: true,
+                message: 'Score incremented by 1',
+            });       
+        }).catch((err) => res.status(500).json({
+            success: false,
+            message: err
+        }));
+    }
 
 };
