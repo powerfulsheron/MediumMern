@@ -16,18 +16,38 @@ class PostDetailContainer extends React.Component {
 
   // Handle btn to bookmark
   handleSaveToBookmarks = () => {
-    this.props.account.user.bookmarks.push(this.props.posts.post);
-    var userPayload = { ...this.props.account.user };
-    delete userPayload.__v;
-    this.props.updateUser(userPayload);
+    if (!this.isBookmarked(this.props.posts.post)) {
+      this.props.account.user.bookmarks.push(this.props.posts.post);
+      var userPayload = { ...this.props.account.user };
+      delete userPayload.__v;
+      this.props.updateUser(userPayload);
+    } else {
+      var new_bookmarks = this.props.account.user.bookmarks.filter(element => {
+        return this.props.posts.post._id !== element._id;
+      });
+      this.props.account.user.bookmarks = new_bookmarks;
+      var userPayload = { ...this.props.account.user };
+      delete userPayload.__v;
+      this.props.updateUser(userPayload);
+    }
   };
 
   // Handle btn favorite
   handleFavorite = () => {
-    this.props.account.user.favorites.push(this.props.posts.post);
-    var userPayload = { ...this.props.account.user };
-    delete userPayload.__v;
-    this.props.updateUser(userPayload);
+    if (!this.isFavorite(this.props.posts.post)) {
+      this.props.account.user.favorites.push(this.props.posts.post);
+      var userPayload = { ...this.props.account.user };
+      delete userPayload.__v;
+      this.props.updateUser(userPayload);
+    } else {
+      var new_favorites = this.props.account.user.favorites.filter(element => {
+        return this.props.posts.post._id !== element._id;
+      });
+      this.props.account.user.favorites = new_favorites;
+      var userPayload = { ...this.props.account.user };
+      delete userPayload.__v;
+      this.props.updateUser(userPayload);
+    }
   };
 
   // Check if already bookmarked
