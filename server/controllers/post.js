@@ -14,48 +14,42 @@ module.exports = {
 
     save: (req, res) => {
         Type.findOne({_id:req.body.type},'name').then((type)=>{
-            var post = new Post(req.body);
-            post.type = {
-                _id : req.body.type,
-                name : type.name
-            }
-            post.save().then((newPost) => {
-                User.findOne({_id:req.user.id}, 'name surname profilepictureurl posts').then((user)=>{
-                    newPost.user = {
-                        _id : req.user.id,
-                        name : user.name,
-                        surname : user.surname,
-                        profilepictureurl : user.profilepictureurl
-                    }
-                    newPost.save().then((finalPost) => {
-                        user.posts.push(
-                            {
-                                _id : finalPost._id,
-                                title : finalPost.title,
-                                timetoread : finalPost.timetoread,
-                                score : finalPost.score
-                            }
-                        );
-                        user.save();
-                        res.status(201).json({
-                            success: true,
-                            message: 'Post Saved',
-                            post:finalPost
-                        });
-                    })
-                    .catch((err) => {
-                        res.status(500).json({
-                            success: false,
-                            message: 'Error when trying to Save Post' + err
-                        });
-                    });
+            User.findOne({_id:req.user.id}, 'name surname profilepictureurl posts').then((user)=>{
+                var post = new Post(req.body);
+                post.date = new Date();
+                post.type = {
 
-                }).catch((err) => {
-                    console.log('Error when trying to Find User' + err);
+                    _id : req.body.type,
+                    name : type.name
+                }
+                post.user = {
+                    _id : req.user.id,
+                    name : user.name,
+                    surname : user.surname,
+                    profilepictureurl : user.profilepictureurl
+                }
+                post.save().then((savedPost) => {
+                    user.posts.push(
+                        {
+                            _id : savedPost._id,
+                            title : savedPost.title,
+                            timetoread : savedPost.timetoread,
+                            score : savedPost.score
+                        }
+                    );
+                    user.save();
+                    res.status(201).json({
+                        success: true,
+                        message: 'Post Saved',
+                        post:savedPost
+                    });
                 });
             });
         }).catch((err) => {
-            console.log('Error when trying to Find Type' + err);
+            res.status(500).json({
+                success: false,
+                message: 'Error when trying to Save Post' + err
+            });
         });
     },
 
