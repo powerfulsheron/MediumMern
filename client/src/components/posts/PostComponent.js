@@ -73,7 +73,7 @@ export default function PostComponent({
   const classes = useStyles();
 
   const setBackgroundType = () => {
-    switch (post.type) {
+    switch (post.type.name) {
       case "WEB":
         return { backgroundColor: "#035EE8" };
 
@@ -142,7 +142,6 @@ export default function PostComponent({
               <Typography
                 variant="caption"
                 component="p"
-                style={{ textAlign: "right" }}
               >
                 {"Score : " +
                   post.score +
@@ -153,7 +152,7 @@ export default function PostComponent({
               {/* - AUTHOR AND DATE - */}
               {post.user && (
                 <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                  {post.user.name + " " + post.user.surname + " - " + post.date}
+                  {post.user.name + " " + post.user.surname + " - Ecrit le " + moment(post.date).format("DD-MM-YYYY à HH:mm")}
                 </Typography>
               )}
             </CardContent>
@@ -161,7 +160,7 @@ export default function PostComponent({
           <Grid item>
             <div className={classes.type}>
               <div className={classes.typeColor} style={setBackgroundType()}>
-                {post.type}
+                {post.type.name}
               </div>
             </div>
           </Grid>

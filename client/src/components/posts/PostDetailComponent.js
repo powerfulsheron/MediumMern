@@ -13,9 +13,8 @@ const useStyles = makeStyles(theme => ({
   },
   type: {
     width: 100,
-    textAlign: "right",
-    fontWeight: "bold",
-    fontSize: 10
+    textAlign: "left",
+    fontWeight: "bold"
   },
   image: {
     width: 175,
@@ -55,7 +54,7 @@ export default function PostDetailComponent({
   const classes = useStyles();
 
   const setBackgroundType = () => {
-    switch (post.type) {
+    switch (post.type.name) {
       case "WEB":
         return { color: "#035EE8" };
 
@@ -118,14 +117,13 @@ export default function PostDetailComponent({
               <Button
                 variant="outlined"
                 size="small"
-                disabled={bookmarked}
                 className={classes.button}
                 onClick={handleSaveToBookmarks}
               >
                 <Bookmarks
                   className={clsx(classes.leftIcon, classes.iconSmall)}
                 />
-                Add to bookmarks
+                {bookmarked ? "Unbookmark" : "Bookmark"}
               </Button>
             </Grid>
 
@@ -135,14 +133,13 @@ export default function PostDetailComponent({
                 variant="outlined"
                 size="small"
                 className={classes.button}
-                disabled={liked}
                 onClick={handleFavorite}
               >
                 <FavoriteOutlined
                   color="secondary"
                   className={clsx(classes.leftIcon, classes.iconSmall)}
                 />
-                Like
+                {liked ? "Unlike" : "like"}
               </Button>
             </Grid>
 
@@ -164,7 +161,7 @@ export default function PostDetailComponent({
             <Grid item>
               <div className={classes.type}>
                 <div className={classes.typeColor} style={setBackgroundType()}>
-                  {post.type}
+                  TYPE {post.type.name}
                 </div>
               </div>
             </Grid>
@@ -187,7 +184,11 @@ export default function PostDetailComponent({
           {/* - AUTHOR AND DATE - */}
           {post.user && (
             <Typography variant="caption" style={{ fontWeight: "bold" }}>
-              {post.user.name + " " + post.user.surname + " - " + post.date}
+              {post.user.name +
+                " " +
+                post.user.surname +
+                " - Ecrit le " +
+                moment(post.date).format("DD-MM-YYYY à HH:mm")}
             </Typography>
           )}
 

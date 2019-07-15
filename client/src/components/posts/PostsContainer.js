@@ -1,11 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import PostComponent from "./PostComponent";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Redirect } from "react-router-dom";
 import { getAllPosts } from "../../redux/actions/posts";
-import { Typography } from "@material-ui/core";
+import { PostsList } from "./PostsList";
 
 class PostsContainer extends React.Component {
   state = {
@@ -34,20 +33,14 @@ class PostsContainer extends React.Component {
           <Tab disableRipple={true} label="Bookmarked posts" />
         </Tabs>
 
-        {/* ALL POSTS */}
-        {this.props.posts.postsLoaded &&
-          this.props.posts.posts.map(post => (
-            <PostComponent key={post._id} post={post} />
-          ))}
+        {/* RECENT POSTS */}
+        {this.state.activeTab === 0 && (
+          <PostsList posts={this.props.posts.posts} />
+        )}
 
-        {/* Loading */}
-        {!this.props.posts.postsLoaded && (
-          <Typography
-            variant="subtitle1"
-            style={{ textAlign: "center", marginTop: 50 }}
-          >
-            Loading...
-          </Typography>
+        {/* BOOKMARKS POSTS */}
+        {this.state.activeTab === 2 && (
+          <PostsList posts={this.props.account.user.bookmarks} />
         )}
       </>
     );
@@ -56,6 +49,7 @@ class PostsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  account: state.account,
   posts: state.posts
 });
 
