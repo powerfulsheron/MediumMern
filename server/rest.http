@@ -73,7 +73,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ### GET POSTS PAR TYPE(id)
-GET http://localhost:3000/api/v1/posts?type=5d1325e0af51080d8afdd7fb
+GET http://localhost:3000/api/v1/posts?type=5d2813b40eb78a96bc5f3780
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
@@ -83,7 +83,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
-    "title": "POST 1",
+    "title": "POST 31",
     "description": "Desc 1",
     "content": "Content 1",
     "date": "2018-01-01",
@@ -100,7 +100,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 
 {
     "_id": "5d1748c1ff4b6600299a3e98",
-    "title": "POST 1123",
+    "title": "POST 19",
     "description": "Desc 1",
     "content": "Content 1",
     "date": "2018-01-01",
@@ -111,7 +111,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 }
 
 ###
-DELETE http://localhost:3000/api/v1/posts?_id=5d168361c2fd3b02c3c1de0d
+DELETE http://localhost:3000/api/v1/posts?_id=5d1748c1ff4b6600299a3e98
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
