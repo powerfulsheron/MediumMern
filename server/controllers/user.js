@@ -6,11 +6,14 @@ module.exports = {
   },
 
   update: (req, res) => {
-    User.findOneAndUpdate({ _id: req.body.id }, { $set: req.body })
-      .then(updateduser => {
+    console.info(req.body);
+    User.findOneAndUpdate({ _id:req.body._id }, { $set: req.body })
+      .then((updateduser) => {
+        console.info(this);
         res.status(200).json({
           success: true,
-          message: "User updated"
+          message: "User updated",
+          updateduser: updateduser
         });
       })
       .catch(err => {
