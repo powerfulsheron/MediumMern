@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import { Chip, Grid, ButtonBase, Button } from "@material-ui/core";
 import moment from "moment";
 import { Bookmarks, FavoriteOutlined } from "@material-ui/icons";
+import { convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const useStyles = makeStyles(theme => ({
   chip: {
@@ -198,7 +200,13 @@ export default function PostDetailComponent({
             variant="body1"
             component="p"
           >
-            {post.content}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: draftToHtml(
+                  convertToRaw(post.content.getCurrentContent())
+                )
+              }}
+            />
           </Typography>
         </Grid>
         {/* ---- */}
