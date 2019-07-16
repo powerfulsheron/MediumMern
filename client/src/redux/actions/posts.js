@@ -142,47 +142,39 @@ export function getOnePost(postId, dispatch) {
   };
 }
 
-// PUT /posts
-export function updateLoggedUser(user, dispatch) {
+// PUT /posts/like
+export function likeAPost(post, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
-  const DECODED_TOKEN = TOKEN ? jwtDecoder(TOKEN) : "";
 
-  fetch(BASE_URL + "/users", {
-    method: "PUT",
+  fetch(BASE_URL + "/posts/like", {
+    method: "POST",
     headers: {
       Authorization: "Bearer " + TOKEN,
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ ...user, _id: DECODED_TOKEN.id })
+    body: JSON.stringify({ _id: post._id })
   })
     .then(response => {
       if (response.status === 200) {
         return response.json();
       } else {
-        return response.json();
+        return new Promise("Erreur");
       }
     })
     .then(data => {
       dispatch({
-        type: "APP_PUT_CURRENT_USER_SUCCEED",
-        payload: {
-          response: data,
-          user: user
-        }
+        type: "APP_PUT_LIKE_POST_SUCCEED"
       });
     })
     .catch(e => {
       console.error(e);
       dispatch({
-        type: "APP_PUT_CURRENT_USER_FAILED",
-        payload: {
-          err: e.error ? e.error : e
-        }
+        type: "APP_PUT_LIKE_POST_FAILED"
       });
     });
 
   return {
-    type: "APP_PUT_CURRENT_USER_REQUESTED"
+    type: "APP_PUT_LIKE_POST_REQUESTED"
   };
 }
