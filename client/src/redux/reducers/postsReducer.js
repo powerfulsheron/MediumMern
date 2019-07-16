@@ -30,6 +30,12 @@ const postsReducer = (
     case "APP_GET_ONE_POST_REQUESTED":
       return { ...state, postLoaded: false };
 
+    case "APP_PUT_LIKE_POST_REQUESTED":
+      return { ...state };
+
+    case "APP_REMOVE_LIKE_POST_REQUESTED":
+      return { ...state };
+
     // ==========================
     // -------- Succeed ---------
     // ==========================
@@ -59,6 +65,20 @@ const postsReducer = (
       };
     }
 
+    case "APP_PUT_LIKE_POST_SUCCEED": {
+      return {
+        ...state,
+        post: { ...state.post, score: state.post.score + 1 }
+      };
+    }
+
+    case "APP_REMOVE_LIKE_POST_SUCCEED": {
+      return {
+        ...state,
+        post: { ...state.post, score: state.post.score - 1 }
+      };
+    }
+
     // ==========================
     // --------- Failed ---------
     // ==========================
@@ -82,10 +102,19 @@ const postsReducer = (
 
     case "APP_GET_ONE_POST_FAILED": {
       return {
-        ...state,
-        status: action.payload.status,
-        err: action.payload.err,
-        postLoaded: false
+        ...state
+      };
+    }
+
+    case "APP_PUT_LIKE_POST_FAILED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_REMOVE_LIKE_POST_FAILED": {
+      return {
+        ...state
       };
     }
 
