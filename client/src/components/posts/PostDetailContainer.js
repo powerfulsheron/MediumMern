@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getOnePost, likeAPost } from "../../redux/actions/posts";
+import { getOnePost, likeAPost, unlikeAPost } from "../../redux/actions/posts";
 import { Typography } from "@material-ui/core";
 import PostDetailComponent from "./PostDetailComponent";
 import { updateLoggedUser } from "../../redux/actions/account";
@@ -50,6 +50,7 @@ class PostDetailContainer extends React.Component {
       userPayload = { ...this.props.account.user };
       delete userPayload.__v;
       this.props.updateUser(userPayload);
+      this.props.removeALike(this.props.posts.post);
     }
   };
 
@@ -109,7 +110,8 @@ const mapStateToProps = state => ({
 const mapActionToProps = dispatch => ({
   getOnePost: postId => dispatch(getOnePost(postId, dispatch)),
   updateUser: user => dispatch(updateLoggedUser(user, dispatch)),
-  putALike: post => dispatch(likeAPost(post, dispatch))
+  putALike: post => dispatch(likeAPost(post, dispatch)),
+  removeALike: post => dispatch(unlikeAPost(post, dispatch))
 });
 
 export default connect(

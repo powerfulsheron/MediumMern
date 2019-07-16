@@ -178,3 +178,40 @@ export function likeAPost(post, dispatch) {
     type: "APP_PUT_LIKE_POST_REQUESTED"
   };
 }
+
+// PUT /posts/like
+export function unlikeAPost(post, dispatch) {
+  const TOKEN = window.localStorage.getItem("token");
+
+  fetch(BASE_URL + "/posts/unlike", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    mode: "cors",
+    body: JSON.stringify({ _id: post._id })
+  })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        return new Promise("Erreur");
+      }
+    })
+    .then(data => {
+      dispatch({
+        type: "APP_REMOVE_LIKE_POST_SUCCEED"
+      });
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch({
+        type: "APP_REMOVE_LIKE_POST_FAILED"
+      });
+    });
+
+  return {
+    type: "APP_REMOVE_LIKE_POST_REQUESTED"
+  };
+}

@@ -179,7 +179,7 @@ const formikEnhancer = withFormik({
 
   // Submit
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(JSON.stringify(values.content.getCurrentContent()));
+    props.savePost({ ...values });
     setSubmitting(false);
   },
 
