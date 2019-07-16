@@ -1,19 +1,23 @@
 import React from "react";
 import { withFormik } from "formik";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import { TextField, Button, Paper } from "@material-ui/core";
+import { Form } from "formik";
+import { connect } from "react-redux";
+import { postAPost } from "../../redux/actions/posts";
+import { getAllTypes } from "../../redux/actions/types";
 import {
   Grid,
   Select,
   Input,
   MenuItem,
   InputLabel,
-  FormControl
+  FormControl,
+  Typography
 } from "@material-ui/core";
-import { TextField, Button } from "@material-ui/core";
-import { Form } from "formik";
-import { connect } from "react-redux";
-import { postAPost } from "../../redux/actions/posts";
-import { getAllTypes } from "../../redux/actions/types";
 
 // Form componant with Formik
 const NewPostFormik = ({
@@ -22,7 +26,7 @@ const NewPostFormik = ({
   handleBlur,
   handleSubmit,
   isSubmitting,
-  onChangeWysiwyg
+  setFieldValue
 }) => (
   <Form onSubmit={handleSubmit}>
     <Grid
@@ -96,25 +100,6 @@ const NewPostFormik = ({
         />
       </Grid>
 
-      {/* ----- CONTENT ( En attendant le Wysiwyg ) ----- */}
-      <Grid item lg={12}>
-        <TextField
-          id="content"
-          name="content"
-          type="text"
-          autoComplete="false"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.content}
-          label="Content"
-          margin="normal"
-          fullWidth
-          multiline
-          rowsMax={10}
-        />
-      </Grid>
-      <br />
-
       {/* ----- TYPE ----- */}
       <Grid item lg={12}>
         <FormControl style={{ width: "100%" }}>
@@ -140,15 +125,29 @@ const NewPostFormik = ({
       </Grid>
     </Grid>
 
-    {/* ----- WYSIWYG ----- */}
-    {/*<Paper style={{ minHeight: 400, marginTop: 20 }}>
-        <Editor
-          id="content"
-          editorStyle={{ paddingLeft: 10, paddingRight: 10 }}
-          //editorState={values.editorState}
-          onChange={handleChange}
-        />
-      </Paper>*/}
+    {/* WYSIWYG */}
+    <Paper style={{ minHeight: 400, marginTop: 20 }}>
+      <Editor
+        id="editorState"
+        editorStyle={{ paddingLeft: 10, paddingRight: 10 }}
+        editorState={values.content}
+        onEditorStateChange={editorState => {
+          setFieldValue("content", editorState);
+        }}
+      />
+    </Paper>
+
+    {/* PREVIEW  */}
+    <Typography variant="h5" style={{ fontWeight: "bold", marginTop: 40 }}>
+      Preview
+    </Typography>
+    <Paper style={{ minHeight: 400, marginTop: 20, padding: 20 }}>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: draftToHtml(convertToRaw(values.content.getCurrentContent()))
+        }}
+      />
+    </Paper>
 
     {/* ----- BTN ----- */}
     <Button
@@ -172,7 +171,7 @@ const formikEnhancer = withFormik({
       description: "",
       timetoread: 1,
       mainimage: "",
-      content: "",
+      content: EditorState.createEmpty(),
       type: "",
       typeOption: props.options
     };
@@ -180,13 +179,8 @@ const formikEnhancer = withFormik({
 
   // Submit
   handleSubmit: (values, { props, setSubmitting }) => {
-    props.savePost({ ...values });
+    console.log(JSON.stringify(values.content.getCurrentContent()));
     setSubmitting(false);
-  },
-
-  // Wysiwyg
-  onChangeWysiwyg: editorState => {
-    this.setState({ editorState });
   },
 
   // Display name

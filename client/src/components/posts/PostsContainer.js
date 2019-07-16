@@ -35,12 +35,15 @@ class PostsContainer extends React.Component {
 
         {/* RECENT POSTS */}
         {this.state.activeTab === 0 && (
-          <PostsList posts={this.props.posts.posts} />
+          <PostsList posts={this.props.posts.posts} per_type={true} />
         )}
 
         {/* BOOKMARKS POSTS */}
         {this.state.activeTab === 2 && (
-          <PostsList posts={this.props.account.user.bookmarks} />
+          <PostsList
+            posts={this.props.account.user.bookmarks}
+            bookmark={true}
+          />
         )}
       </>
     );
