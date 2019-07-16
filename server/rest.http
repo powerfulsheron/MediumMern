@@ -59,8 +59,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 {
     "_id":"5d14efe41d55cf0212f57650",
     "name": "Canavaggio",
-    "surname": "Henri3",
+    "surname": "Henri4",
     "birthdate": "2018-01-01"
+}
+
+### Tout ce que tu mettra en param sera update, il faut que les param respectent le nom des props
+PUT http://localhost:3000/api/v1/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+
+{
+    "_id":"5d2d704bfbf61200231e2ebc",
+    "bookmarks": [{
+        "_id": "5d2d71f7fbf61200231e2ec0",
+        "title": "POST 1",
+        "timetoread": 1,
+        "score": 0,
+        "user": {
+            "name": "Canavaggio",
+            "surname": "Lorenzo",
+            "profilepictureurl": "https://avatars0.githubusercontent.com/u/18470816?s=460&v=4"
+        }
+    }]
 }
 
 ### -----------------------------------
@@ -80,16 +100,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0M
 ### Je remplis le user dans le back, le score est calculé par les utilisateurs
 POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMmQ3MDRiZmJmNjEyMDAyMzFlMmViYyIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYzMjU4OTY2fQ.dJMt5Vz2VFmUuS7-Cm_4KB_KwRAg4txEWJViSnJYGPM
 
 {
-    "title": "POST 31",
+    "title": "POST 1",
     "description": "Desc 1",
     "content": "Content 1",
     "date": "2018-01-01",
     "timetoread": 1,
     "mainimage": "https://www.brookings.edu/wp-content/uploads/2017/11/metro_20171121_tech-empowers-tech-polarizes-mark-muro.jpg",
-    "type": "5d2813b40eb78a96bc5f3780",
+    "type": "5d2d7118a6e1c9899726778f",
     "tags": ["tests","docker","CI"]
 }
 
@@ -116,12 +136,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 ### on peut utiliser PUT pour le score aussi
-PUT http://localhost:3000/api/v1/posts/like
+POST http://localhost:3000/api/v1/posts/like
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMTRlZmU0MWQ1NWNmMDIxMmY1NzY1MCIsIm5hbWUiOiJDYW5hdmFnZ2lvIiwic3VybmFtZSI6IkxvcmVuem8iLCJwcm9maWxlcGljdHVyZXVybCI6Imh0dHBzOi8vYXZhdGFyczAuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTg0NzA4MTY_cz00NjAmdj00IiwiaWF0IjoxNTYxNjUzMjI2fQ.ktzH0Luw74ubyx3Jswi1uPRg4wV3hqUxEL_BQJqpkB4
 
 {
-    "_id": "5d1748c1ff4b6600299a3e98"
+    "_id": "5d2979fdaf317700556bea59"
 }
 
 ### -----------------------------------

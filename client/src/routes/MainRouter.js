@@ -8,6 +8,7 @@ import { PostsPage } from "../components/posts/PostsPage";
 import { DashboardPage } from "../components/dashboard/DashboardPage";
 import { NewPostPage } from "../components/posts/NewPostPage";
 import { PostDetailPage } from "../components/posts/PostDetailPage";
+import { UserDetailPage } from "../components/users/UserDetailPage"
 
 export default function MainRouter() {
   return (
@@ -26,6 +27,9 @@ export default function MainRouter() {
 
       {/* --- DASHBOARD --- */}
       <Route path="/dashboard" component={DashboardPage} />
+
+      {/* --- USERS --- */}
+      <Route path="/user/:id" exact component={UserDetailPage} />
 
       {/* --- NEW POSTS --- */}
       <Route path="/newpost" component={NewPostPage} />

@@ -28,7 +28,7 @@ module.exports = {
                     surname : user.surname,
                     profilepictureurl : user.profilepictureurl
                 }
-                post.save().then((savedPost) => {
+                post.save().then((savedPost) => { // Middleware mongoose
                     user.posts.push(
                         {
                             _id : savedPost._id,
@@ -97,6 +97,18 @@ module.exports = {
             res.status(200).json({
                 success: true,
                 message: 'Score incremented by 1',
+            });       
+        }).catch((err) => res.status(500).json({
+            success: false,
+            message: err
+        }));
+    },
+
+    decrementScore: (req, res) => {
+        Post.findOneAndUpdate({ _id:req.body._id }, { $inc:{ score: -1 } }).then(()=>{
+            res.status(200).json({
+                success: true,
+                message: 'Score decremented by 1',
             });       
         }).catch((err) => res.status(500).json({
             success: false,
