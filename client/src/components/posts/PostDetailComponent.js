@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import { Chip, Grid, ButtonBase, Button } from "@material-ui/core";
 import moment from "moment";
 import { Bookmarks, FavoriteOutlined } from "@material-ui/icons";
-import { convertToRaw } from "draft-js";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 
 const useStyles = makeStyles(theme => ({
@@ -195,19 +195,18 @@ export default function PostDetailComponent({
           )}
 
           {/* CONTENT */}
-          <Typography
-            style={{ marginTop: 50, marginBottom: 100 }}
-            variant="body1"
-            component="p"
-          >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: draftToHtml(
-                  convertToRaw(post.content.getCurrentContent())
+          <div
+            style={{ marginTop: 48 }}
+            dangerouslySetInnerHTML={{
+              __html: draftToHtml(
+                convertToRaw(
+                  EditorState.createWithContent(
+                    convertFromRaw(JSON.parse(post.content))
+                  ).getCurrentContent()
                 )
-              }}
-            />
-          </Typography>
+              )
+            }}
+          />
         </Grid>
         {/* ---- */}
 

@@ -12,7 +12,7 @@ const app = express();
 var router = express.Router();
 
 app.use(cors());
-app.use(bodyparser.json());
+app.use(bodyparser.json({limit: '50mb'}));
 
 app.listen(3000, () => {
   console.log("listening");

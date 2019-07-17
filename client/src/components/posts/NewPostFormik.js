@@ -125,7 +125,7 @@ const NewPostFormik = ({
       </Grid>
     </Grid>
 
-    {/* WYSIWYG */}
+    {/* ----- WYSIWYG ----- */}
     <Paper style={{ minHeight: 400, marginTop: 20 }}>
       <Editor
         id="editorState"
@@ -137,7 +137,7 @@ const NewPostFormik = ({
       />
     </Paper>
 
-    {/* PREVIEW  */}
+    {/* ----- PREVIEW ----- */}
     <Typography variant="h5" style={{ fontWeight: "bold", marginTop: 40 }}>
       Preview
     </Typography>
@@ -179,7 +179,10 @@ const formikEnhancer = withFormik({
 
   // Submit
   handleSubmit: (values, { props, setSubmitting }) => {
-    props.savePost({ ...values });
+    props.savePost({
+      ...values,
+      content: JSON.stringify(convertToRaw(values.content.getCurrentContent()))
+    });
     setSubmitting(false);
   },
 

@@ -139,10 +139,7 @@ export default function PostComponent({
               </Typography>
 
               {/* - KPI - */}
-              <Typography
-                variant="caption"
-                component="p"
-              >
+              <Typography variant="caption" component="p">
                 {"Score : " +
                   post.score +
                   " - Time to read : " +
@@ -152,7 +149,11 @@ export default function PostComponent({
               {/* - AUTHOR AND DATE - */}
               {post.user && (
                 <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                  {post.user.name + " " + post.user.surname + " - Ecrit le " + moment(post.date).format("DD-MM-YYYY à HH:mm")}
+                  {post.user.name +
+                    " " +
+                    post.user.surname +
+                    " - Ecrit le " +
+                    moment(post.date).format("DD-MM-YYYY à HH:mm")}
                 </Typography>
               )}
             </CardContent>

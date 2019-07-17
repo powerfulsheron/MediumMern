@@ -5,6 +5,9 @@ import Tab from "@material-ui/core/Tab";
 import { Redirect } from "react-router-dom";
 import { getAllPosts } from "../../redux/actions/posts";
 import { PostsList } from "./PostsList";
+import empty from "../../img/undraw_empty_xct9.svg";
+import bookmarks from "../../img/undraw_bookmarks_r6up.svg";
+import dreamer from "../../img/undraw_dreamer_gxxi.svg";
 
 class PostsContainer extends React.Component {
   state = {
@@ -34,15 +37,29 @@ class PostsContainer extends React.Component {
         </Tabs>
 
         {/* RECENT POSTS */}
-        {this.state.activeTab === 0 && (
-          <PostsList posts={this.props.posts.posts} per_type={true} />
+        {this.state.activeTab === 0 && this.props.posts.postsLoaded && (
+          <PostsList
+            posts={this.props.posts.posts}
+            img={empty}
+            text="No post"
+          />
+        )}
+
+        {/* RECENT POSTS */}
+        {this.state.activeTab === 1 && (
+          <PostsList
+            posts={[]}
+            img={dreamer}
+            text="No posts found for this type"
+          />
         )}
 
         {/* BOOKMARKS POSTS */}
         {this.state.activeTab === 2 && (
           <PostsList
             posts={this.props.account.user.bookmarks}
-            bookmark={true}
+            img={bookmarks}
+            text="No bookmarks"
           />
         )}
       </>
