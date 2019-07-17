@@ -6,9 +6,8 @@ module.exports = {
   },
 
   update: (req, res) => {
-    console.info(req.body);
-    User.findOneAndUpdate({ _id:req.body._id }, { $set: req.body })
-      .then((updateduser) => {
+    User.findOneAndUpdate({ _id: req.body._id }, { $set: req.body })
+      .then(updateduser => {
         console.info(this);
         res.status(200).json({
           success: true,

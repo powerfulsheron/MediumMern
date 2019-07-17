@@ -36,6 +36,9 @@ const postsReducer = (
     case "APP_REMOVE_LIKE_POST_REQUESTED":
       return { ...state };
 
+    case "APP_REMOVE_POST_REQUESTED":
+      return { ...state };
+
     // ==========================
     // -------- Succeed ---------
     // ==========================
@@ -79,6 +82,13 @@ const postsReducer = (
       };
     }
 
+    case "APP_REMOVE_POST_SUCCEED": {
+      return {
+        ...state,
+        post: {}
+      };
+    }
+
     // ==========================
     // --------- Failed ---------
     // ==========================
@@ -113,6 +123,12 @@ const postsReducer = (
     }
 
     case "APP_REMOVE_LIKE_POST_FAILED": {
+      return {
+        ...state
+      };
+    }
+
+    case "APP_REMOVE_POST_FAILED": {
       return {
         ...state
       };

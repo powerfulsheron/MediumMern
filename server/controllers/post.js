@@ -74,7 +74,7 @@ module.exports = {
         Post.findOneAndDelete({ _id:req.query._id })
         .then((deletedPost)=>{
         if(deletedPost) {
-            res.status(200).json({
+            res.status(204).json({
                 success: true,
                 message: 'Post deleted.'
             });
