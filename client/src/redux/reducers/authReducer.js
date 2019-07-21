@@ -2,34 +2,39 @@ const authReducer = (
   state = {
     token: window.localStorage.getItem("token"),
     logged: window.localStorage.getItem("token") ? true : false,
-    err: "",
-    success: ""
+    
+    msgToken: "",
+    msgRegister: "",
+    msgLogin: "",
+    msgLogout: ""
   },
   action
 ) => {
   switch (action.type) {
-    // Auth requested
-    case "APP_LOGIN_REQUESTED": {
+    // Reset msg
+    case "APP_AUTH_RESET_MSG": {
       return {
         ...state,
-        success: ""
+        msgToken: "",
+        msgRegister: "",
+        msgLogin: "",
+        msgLogout: ""
       };
+    }
+
+    // Auth requested
+    case "APP_LOGIN_REQUESTED": {
+      return { ...state };
     }
 
     // Verification du token
     case "APP_VERIFY_TOKEN": {
-      return {
-        ...state,
-        success: ""
-      };
+      return { ...state };
     }
 
     // Registration requested
     case "APP_REGISTER_REQUESTED": {
-      return {
-        ...state,
-        success: ""
-      };
+      return { ...state };
     }
 
     // Auth success
@@ -38,8 +43,7 @@ const authReducer = (
         ...state,
         token: action.payload.token,
         logged: true,
-        err: "",
-        success: "Login succeed !"
+        msgLogin: "Login succeed !"
       };
     }
 
@@ -47,7 +51,7 @@ const authReducer = (
     case "APP_REGISTER_SUCCEED": {
       return {
         ...state,
-        success: "Register succeed !"
+        msgRegister: "Register succeed !"
       };
     }
 
@@ -56,8 +60,7 @@ const authReducer = (
       return {
         ...state,
         logged: false,
-        err: action.payload.err,
-        success: ""
+        msgLogin: action.payload.err
       };
     }
 
@@ -65,8 +68,7 @@ const authReducer = (
     case "APP_REGISTER_FAILED": {
       return {
         ...state,
-        err: action.payload.err,
-        success: ""
+        msgRegister: action.payload.err
       };
     }
 
@@ -76,8 +78,7 @@ const authReducer = (
         ...state,
         token: "",
         logged: false,
-        err: action.payload.err,
-        success: ""
+        msgToken: action.payload.err
       };
     }
 
@@ -87,8 +88,7 @@ const authReducer = (
         ...state,
         token: "",
         logged: false,
-        err: "",
-        success: "Logout succeed !"
+        msgLogout: "Logout succeed !"
       };
     }
 

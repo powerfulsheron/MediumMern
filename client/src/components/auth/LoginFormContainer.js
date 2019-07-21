@@ -13,6 +13,10 @@ class LoginFormContainer extends React.Component {
     password: ""
   };
 
+  componentWillMount() {
+    this.props.resetMsg();
+  }
+
   // Validation de formulaire
   validateForm = () => {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -35,8 +39,8 @@ class LoginFormContainer extends React.Component {
     return (
       <>
         {/* Error message */}
-        {this.props.auth.err !== "" && (
-          <LoginFormRejected message={this.props.auth.err} />
+        {this.props.auth.msgLogin !== "" && (
+          <LoginFormRejected message={this.props.auth.msgLogin} />
         )}
 
         {/* Form */}
@@ -67,7 +71,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  onLogin: (email, password) => dispatch(appLogin(email, password, dispatch))
+  onLogin: (email, password) => dispatch(appLogin(email, password, dispatch)),
+  resetMsg: () => dispatch({ type: "APP_AUTH_RESET_MSG" })
 });
 
 export default connect(

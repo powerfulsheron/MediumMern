@@ -1,32 +1,33 @@
-// ----------------------
+const BASE_URL = "http://localhost:3000";
+
 // ------   LOGIN  ------
-// ----------------------
 export function appLogin(email, password, dispatch) {
-  fetch("http://localhost:3000/login", {
+  var options = {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     mode: "cors",
     body: JSON.stringify({
       email: email,
       password: password
     })
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/login", options)
     .then(response => {
-      if (response.status === 201) {
-        return response.json();
-      } else if (response.status === 400) {
-        return Promise.reject("Invalid email/password");
-      } else {
-        return Promise.reject("Unexpected error");
+      switch (response.status) {
+        case 201:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad credentials");
+        default:
+          return Promise.reject("Server error");
       }
     })
-    .then(data => {
-      // Sauvegarde en localStorage
-      window.localStorage.setItem("token", data.token);
 
-      // Succeed
+    // Success
+    .then(data => {
+      window.localStorage.setItem("token", data.token);
       dispatch({
         type: "APP_LOGIN_SUCCEED",
         payload: {
@@ -34,6 +35,8 @@ export function appLogin(email, password, dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       dispatch({
         type: "APP_LOGIN_FAILED",
@@ -43,37 +46,46 @@ export function appLogin(email, password, dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_LOGIN_REQUESTED"
   };
 }
 
-// ----------------------
 // ---  VERIFY TOKEN  ---
-// ----------------------
 export function appVerifyToken(dispatch) {
   const token = window.localStorage.getItem("token");
 
-  fetch("http://localhost:3000/status", {
+  var options = {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
       "Content-Type": "application/json"
     },
     mode: "cors"
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/status", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else if (response.status === 401) {
-        return Promise.reject("");
-      } else {
-        return Promise.reject("Unexpected error");
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Token unavailable");
+        case 401:
+          return Promise.reject("Please log in");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       console.log(data.status);
     })
+
+    // Error
     .catch(e => {
       window.localStorage.removeItem("token");
       dispatch({
@@ -84,14 +96,13 @@ export function appVerifyToken(dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_VERIFY_TOKEN"
   };
 }
 
-// ----------------------
-// ---     LOGOUT     ---
-// ----------------------
+// --- LOGOUT ---
 export function appLogout() {
   window.localStorage.removeItem("token");
   return {
@@ -99,11 +110,9 @@ export function appLogout() {
   };
 }
 
-// ----------------------
-// ---    REGISTER    ---
-// ----------------------
+// --- REGISTER ---
 export function appRegister(email, password, dispatch) {
-  fetch("http://localhost:3000/register", {
+  var options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -113,22 +122,29 @@ export function appRegister(email, password, dispatch) {
       email: email,
       password: password
     })
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/register", options)
     .then(response => {
-      if (response.status === 201) {
-        return response.json();
-      } else if (response.status === 400) {
-        return Promise.reject("Unexpected error");
-      } else {
-        return Promise.reject("Unexpected error");
+      switch (response.status) {
+        case 201:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
-      // Succeed
       dispatch({
         type: "APP_REGISTER_SUCCEED"
       });
     })
+
+    // Error
     .catch(e => {
       dispatch({
         type: "APP_REGISTER_FAILED",
@@ -138,6 +154,7 @@ export function appRegister(email, password, dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_REGISTER_REQUESTED"
   };

@@ -41,6 +41,13 @@ class RegisterFormContainer extends React.Component {
     return (
       <>
         {this.props.auth.logged && <Redirect to="/posts" />}
+        {this.props.auth.msgRegister === "Register succeed !" && (
+          <>
+            {/* Insertion alert */}
+            <Redirect to="/login" />
+          </>
+        )}
+
         <RegisterForm
           registerEmail={this.state.registerEmail}
           registerPassword={this.state.registerPassword}
@@ -60,7 +67,8 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = dispatch => ({
   onRegister: (email, password) =>
-    dispatch(appRegister(email, password, dispatch))
+    dispatch(appRegister(email, password, dispatch)),
+  resetMsg: () => dispatch({ type: "APP_AUTH_RESET_MSG" })
 });
 
 export default connect(
