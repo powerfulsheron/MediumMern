@@ -4,21 +4,29 @@ const BASE_URL = "http://localhost:3000/api/v1";
 export function getAllTypes(dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/types", {
+  const options = {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
       "Content-Type": "application/json"
     },
     mode: "cors"
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/types", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return response.json();
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_GET_ALL_TYPE_SUCCEED",
@@ -28,6 +36,8 @@ export function getAllTypes(dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -39,6 +49,7 @@ export function getAllTypes(dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_GET_ALL_TYPE_REQUESTED"
   };

@@ -16,14 +16,20 @@ export function postAPost(post, dispatch) {
     body: JSON.stringify({ ...post, user: { id: DECODED_TOKEN.id } })
   };
 
+  // Call API
   fetch(BASE_URL + "/posts", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return response.json();
+      switch (response.status) {
+        case 201:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_POST_NEW_POST_SUCCEED",
@@ -33,6 +39,8 @@ export function postAPost(post, dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -44,30 +52,39 @@ export function postAPost(post, dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_POST_NEW_POST_REQUESTED"
   };
 }
 
-// ---- GET /posts/all -----
+// GET /posts/all
 export function getAllPosts(dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts/all", {
+  const options = {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
       "Content-Type": "application/json"
     },
     mode: "cors"
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/posts/all", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return response.json();
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_GET_ALL_POST_SUCCEED",
@@ -77,6 +94,8 @@ export function getAllPosts(dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -88,6 +107,7 @@ export function getAllPosts(dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_GET_ALL_POST_REQUESTED"
   };
@@ -97,21 +117,31 @@ export function getAllPosts(dispatch) {
 export function getOnePost(postId, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts/all?_id=" + postId, {
+  const options = {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
       "Content-Type": "application/json"
     },
     mode: "cors"
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/posts/all?_id=" + postId, options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return response.json();
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        case 404:
+          return Promise.reject("User not found");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_GET_ONE_POST_SUCCEED",
@@ -121,6 +151,8 @@ export function getOnePost(postId, dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -132,6 +164,7 @@ export function getOnePost(postId, dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_GET_ONE_POST_REQUESTED"
   };
@@ -141,7 +174,7 @@ export function getOnePost(postId, dispatch) {
 export function likeAPost(post, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts/like", {
+  const options = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -149,19 +182,31 @@ export function likeAPost(post, dispatch) {
     },
     mode: "cors",
     body: JSON.stringify({ _id: post._id })
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/posts/like", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return new Promise("Erreur");
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        case 404:
+          return Promise.reject("User not found");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_PUT_LIKE_POST_SUCCEED"
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -169,16 +214,17 @@ export function likeAPost(post, dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_PUT_LIKE_POST_REQUESTED"
   };
 }
 
-// PUT /posts/like
+// PUT /posts/unlike
 export function unlikeAPost(post, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts/unlike", {
+  const options = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -186,19 +232,31 @@ export function unlikeAPost(post, dispatch) {
     },
     mode: "cors",
     body: JSON.stringify({ _id: post._id })
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/posts/unlike", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return new Promise("Erreur");
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        case 404:
+          return Promise.reject("User not found");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_REMOVE_LIKE_POST_SUCCEED"
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -206,6 +264,7 @@ export function unlikeAPost(post, dispatch) {
       });
     });
 
+  // Requested
   return {
     type: "APP_REMOVE_LIKE_POST_REQUESTED"
   };
@@ -215,32 +274,45 @@ export function unlikeAPost(post, dispatch) {
 export function removeAPost(postID, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
 
-  fetch(BASE_URL + "/posts?_id=" + postID, {
+  const options = {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + TOKEN,
       "Content-Type": "application/json"
     },
     mode: "cors"
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/posts?_id=" + postID, options)
     .then(response => {
-      if (response.status === 204) {
-        return response.json();
-      } else {
-        return new Promise("Erreur");
+      switch (response.status) {
+        case 204:
+          return Promise.resolve("Suppressed successfully");
+        case 400:
+          return Promise.reject("Bad request");
+        case 404:
+          return Promise.reject("User not found");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_REMOVE_POST_SUCCEED"
       });
     })
+
+    // Error
     .catch(e => {
       dispatch({
         type: "APP_REMOVE_POST_FAILED"
       });
     });
 
+  // Requested
   return {
     type: "APP_REMOVE_POST_REQUESTED"
   };
