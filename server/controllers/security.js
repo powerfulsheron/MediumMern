@@ -3,7 +3,7 @@ const User = require("../models/user.js");
 
 module.exports = {
   login: (req, res) => {
-    sUser.login(req.body.email, req.body.password)
+    User.login(req.body.email, req.body.password)
       .then(user => {
         const token = createToken(user);
         res.status(201).send({ token });
