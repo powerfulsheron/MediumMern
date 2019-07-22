@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Paper, Typography } from "@material-ui/core";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import NewPostFormik from "./NewPostFormik";
-import { postAPost, resetStatus } from "../../redux/actions/posts";
+import { postAPost } from "../../redux/actions/posts";
 import { getAllTypes } from "../../redux/actions/types";
 
 class NewPostFormContainer extends React.Component {
@@ -42,7 +42,10 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = dispatch => ({
   savePost: post => dispatch(postAPost(post, dispatch)),
-  resetStatus: () => dispatch(resetStatus()),
+  resetStatus: () =>
+    dispatch({
+      type: "APP_POST_STATUS_NEW_POST_RESET"
+    }),
   getAllTypes: () => dispatch(getAllTypes(dispatch))
 });
 

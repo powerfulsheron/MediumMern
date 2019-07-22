@@ -1,30 +1,34 @@
 const jwtDecode = require("jwt-decode");
 const BASE_URL = "http://localhost:3000/api/v1";
 
-// ---------------
 // GET /users/:id
-// ---------------
 export function getLoggedUser(dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecode(TOKEN) : "";
 
-  fetch(BASE_URL + "/users?_id=" + DECODED_TOKEN.id, {
+  const options = {
     method: "GET",
     headers: {
       Authorization: "Bearer " + TOKEN,
       "Content-Type": "application/json"
     },
     mode: "cors"
-  })
+  };
+
+  // Call API
+  fetch(BASE_URL + "/users?_id=" + DECODED_TOKEN.id, options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else if (response.status === 401) {
-        return Promise.reject(response.json());
-      } else {
-        return Promise.reject("Unexpected error");
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 404:
+          return Promise.reject("User not found");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       delete data[0].password;
       dispatch({
@@ -34,6 +38,8 @@ export function getLoggedUser(dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       console.error(e);
       dispatch({
@@ -49,14 +55,12 @@ export function getLoggedUser(dispatch) {
   };
 }
 
-// ---------------
 // PUT /users/:id
-// ---------------
 export function updateLoggedUser(user, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecode(TOKEN) : "";
-  
-  fetch(BASE_URL + "/users", {
+
+  const options = {
     method: "PUT",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -64,14 +68,23 @@ export function updateLoggedUser(user, dispatch) {
     },
     mode: "cors",
     body: JSON.stringify({ ...user, id: DECODED_TOKEN.id })
-  })
+  };
+
+  fetch(BASE_URL + "/users", options)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return new Promise("error");
+      switch (response.status) {
+        case 200:
+          return response.json();
+        case 400:
+          return Promise.reject("Bad request");
+        case 404:
+          return Promise.reject("User not found");
+        default:
+          return Promise.reject("Server error");
       }
     })
+
+    // Success
     .then(data => {
       dispatch({
         type: "APP_PUT_CURRENT_USER_SUCCEED",
@@ -81,6 +94,8 @@ export function updateLoggedUser(user, dispatch) {
         }
       });
     })
+
+    // Error
     .catch(e => {
       dispatch({
         type: "APP_PUT_CURRENT_USER_FAILED",
@@ -92,12 +107,5 @@ export function updateLoggedUser(user, dispatch) {
 
   return {
     type: "APP_PUT_CURRENT_USER_REQUESTED"
-  };
-}
-
-// RESET CURRENT USER
-export function resetCurrentUser() {
-  return {
-    type: "APP_ACCOUNT_RESET"
   };
 }

@@ -1,12 +1,12 @@
 const jwtDecoder = require("jwt-decode");
 const BASE_URL = "http://localhost:3000/api/v1";
 
-// ---- POST /posts ----
+// POST /posts
 export function postAPost(post, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
   const DECODED_TOKEN = TOKEN ? jwtDecoder(TOKEN) : "";
 
-  fetch(BASE_URL + "/posts", {
+  const options = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + TOKEN,
@@ -14,7 +14,9 @@ export function postAPost(post, dispatch) {
     },
     mode: "cors",
     body: JSON.stringify({ ...post, user: { id: DECODED_TOKEN.id } })
-  })
+  };
+
+  fetch(BASE_URL + "/posts", options)
     .then(response => {
       if (response.status === 200) {
         return response.json();
@@ -44,13 +46,6 @@ export function postAPost(post, dispatch) {
 
   return {
     type: "APP_POST_NEW_POST_REQUESTED"
-  };
-}
-
-// ---- reset status ----
-export function resetStatus() {
-  return {
-    type: "APP_POST_STATUS_NEW_POST_RESET"
   };
 }
 

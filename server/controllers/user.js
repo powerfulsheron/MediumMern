@@ -2,25 +2,26 @@ const User = require("../models/user.js");
 
 module.exports = {
   find: (req, res) => {
-    User.find(req.query).then(data => res.json(data));
+    User.find(req.query)
+      .then(data => {
+        if (data.length >= 0) res.json(data);
+        else res.status(404).json([]);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(400).json({ error: err });
+      });
   },
 
   update: (req, res) => {
     User.findOneAndUpdate({ _id: req.body._id }, { $set: req.body })
-      .then(updateduser => {
-        console.info(this);
-        res.status(200).json({
-          success: true,
-          message: "User updated",
-          updateduser: updateduser
-        });
+      .then(updated_user => {
+        if (updated_user) res.status(200).json(updated_user);
+        else res.status(404).json({});
       })
       .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          success: false,
-          message: "Error when trying to update User : " + err
-        });
+        console.error(err);
+        res.status(400).json({ error: err });
       });
   },
 
@@ -29,26 +30,14 @@ module.exports = {
       res.status(403).send({ message: "You are not authorized to do this." });
     } else {
       User.findOneAndDelete({ _id: req.query.id })
-        .then(deletedUser => {
-          if (deletedUser) {
-            res.status(200).json({
-              success: true,
-              message: "User deleted.",
-              deletedUser: deletedUser
-            });
-          } else {
-            res.status(202).json({
-              success: false,
-              message: "No User match the query"
-            });
-          }
+        .then(deleted_user => {
+          if (deleted_user) res.status(204).send();
+          else res.status(404).json({});
         })
-        .catch(err =>
-          res.status(500).json({
-            success: false,
-            message: err
-          })
-        );
+        .catch(err => {
+          console.error(err);
+          res.status(400).json({ error: err });
+        });
     }
   }
 };

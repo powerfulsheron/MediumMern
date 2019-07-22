@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = dispatch => ({
   onLogout: () => dispatch(appLogout()),
-  onResetCurrentUser: () => dispatch(resetCurrentUser())
+  onResetCurrentUser: () => dispatch({ type: "APP_ACCOUNT_RESET" })
 });
 
 export default connect(
