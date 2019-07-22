@@ -4,7 +4,7 @@ module.exports = {
   find: (req, res) => {
     User.find(req.query)
       .then(data => {
-        if (data.length >= 0) res.json(data);
+        if (data.length > 0) res.json(data);
         else res.status(404).json([]);
       })
       .catch(err => {
