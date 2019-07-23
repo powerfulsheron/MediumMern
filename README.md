@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/powerfulsheron/mediummern/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/powerfulsheron/mediummern)
+
 # MediumMern
 
 MERN (Mongo, Express, React, Node) medium.com clone
