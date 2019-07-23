@@ -35,7 +35,7 @@ export function postAPost(post, dispatch) {
         type: "APP_POST_NEW_POST_SUCCEED",
         payload: {
           post: data.post,
-          status: "Published !"
+          status: "Post published sucessfully !"
         }
       });
     })
@@ -47,7 +47,7 @@ export function postAPost(post, dispatch) {
         type: "APP_POST_NEW_POST_FAILED",
         payload: {
           err: e.error ? e.error : e,
-          status: "Error during the save of the post"
+          status: "An error occured during the save of the post"
         }
       });
     });

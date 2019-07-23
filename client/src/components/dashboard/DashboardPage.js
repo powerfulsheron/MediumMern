@@ -61,18 +61,6 @@ export function DashboardPage({ match }) {
                   </Typography>
                 </MenuItem>
               </Link>
-              <Link className={classes.links} to={`${match.url}/follows`}>
-                <MenuItem>
-                  <Typography
-                    className={classes.itemMenu}
-                    color="secondary"
-                    variant="button"
-                    noWrap
-                  >
-                    Follows
-                  </Typography>
-                </MenuItem>
-              </Link>
             </MenuList>
           </Grid>
           <Grid item lg={7} md={7} xs={11}>

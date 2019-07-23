@@ -1,11 +1,15 @@
 const accountReducer = (
-  state = { loaded: false, updating: false, user: {}, err: "" },
+  state = { loaded: false, updated: false, user: {}, status: "" },
   action
 ) => {
   switch (action.type) {
     // ------ Reset status ------
     case "APP_ACCOUNT_RESET":
-      return { ...state, err: "", loaded: false, user: {} };
+      return { ...state, err: "", updated: false, loaded: false, user: {} };
+
+    case "APP_ACCOUNT_RESET_UPDATED": {
+      return { ...state, updated: false, err: "" };
+    }
 
     // ------ Requested ------
     case "APP_GET_CURRENT_USER_REQUESTED":

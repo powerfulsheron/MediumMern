@@ -89,7 +89,6 @@ export function updateLoggedUser(user, dispatch) {
       dispatch({
         type: "APP_PUT_CURRENT_USER_SUCCEED",
         payload: {
-          response: data,
           user: user
         }
       });
