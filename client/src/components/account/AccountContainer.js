@@ -8,6 +8,7 @@ import { AlertContentComponent } from "../common/AlertContentComponent";
 class AccountContainer extends React.Component {
   componentWillMount() {
     this.props.getLoggedUser();
+    this.props.resetUpdated();
   }
 
   handleClose = (event, reason) => {
