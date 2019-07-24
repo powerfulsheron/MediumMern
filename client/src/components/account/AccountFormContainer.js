@@ -19,6 +19,7 @@ class AccountFormContainer extends React.Component {
               surname: "",
               birthdate: moment().format("YYYY-MM-DD"),
               description: "",
+              profilepictureurl: "",
               ...this.props.account.user
             }}
             onSubmit={(values, actions) => {
@@ -100,6 +101,20 @@ class AccountFormContainer extends React.Component {
                   onBlur={handleBlur}
                   value={values.description}
                   label="Description"
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+
+                <TextField
+                  id="profilepictureurl"
+                  name="profilepictureurl"
+                  type="text"
+                  autoComplete="false"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.profilepictureurl}
+                  label="Profile Picture"
                   margin="normal"
                   fullWidth
                 />

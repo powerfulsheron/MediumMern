@@ -148,6 +148,7 @@ export default function PostComponent({
 
               {/* - AUTHOR AND DATE - */}
               {post.user && (
+                <>
                 <Link
                   to={"/user/" + post.user._id}
                   style={{
@@ -157,13 +158,20 @@ export default function PostComponent({
                   }}
                 >
                   <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                    {post.user.name +
+                    {
+                      post.user.name +
                       " " +
-                      post.user.surname +
-                      " - Ecrit le " +
-                      moment(post.date).format("DD-MM-YYYY à HH:mm")}
+                      post.user.surname
+                    }
                   </Typography>
                 </Link>
+                <Typography variant="caption" style={{ fontWeight: "bold" }}>
+                {
+                  " - Ecrit le " +
+                  moment(post.date).format("DD-MM-YYYY à HH:mm")
+                }
+                </Typography>
+                </>
               )}
             </CardContent>
           </Grid>
