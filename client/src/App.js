@@ -3,6 +3,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { appVerifyToken } from "./redux/actions/auth";
 import MainRouter from "./routes/MainRouter";
+import { FooterComponent } from "./components/footer/FooterComponent";
 
 class App extends React.Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <MainRouter />
+        <FooterComponent />
       </div>
     );
   }
