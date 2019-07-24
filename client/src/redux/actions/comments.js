@@ -20,6 +20,8 @@ export function saveComment(post, comment, dispatch) {
         return response.json();
       case 400:
         return Promise.reject("Bad request");
+      case 404:
+        return Promise.reject("Not found");
       default:
         return Promise.reject("Server error");
     }

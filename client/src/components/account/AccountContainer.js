@@ -19,6 +19,11 @@ class AccountContainer extends React.Component {
     this.props.resetUpdated();
   };
 
+  isError = () => {
+    console.log(this.props.account);
+    return this.props.account.err !== "";
+  };
+
   render() {
     return (
       <>
@@ -43,7 +48,7 @@ class AccountContainer extends React.Component {
             vertical: "top",
             horizontal: "right"
           }}
-          open={this.props.account.err === ""}
+          open={this.isError()}
           autoHideDuration={6000}
           onClose={this.handleClose}
         >
