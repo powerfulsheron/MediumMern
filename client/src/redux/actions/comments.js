@@ -1,8 +1,8 @@
+const jwtDecoder = require("jwt-decode");
 const BASE_URL = "http://localhost:3000/api/v1";
 
-export function saveComment(post, comment, dispatch) {
+export function saveComment(post, content, dispatch) {
   const TOKEN = window.localStorage.getItem("token");
-  const DECODED_TOKEN = TOKEN ? jwtDecoder(TOKEN) : "";
 
   const options = {
     method: "POST",
@@ -11,7 +11,7 @@ export function saveComment(post, comment, dispatch) {
       "Content-Type": "application/json"
     },
     mode: "cors",
-    body: JSON.stringify({ _idpost: post._id, content: comment })
+    body: JSON.stringify({ _idpost: post._id, content: content })
   };
 
   fetch(BASE_URL + "/comments", options).then(response => {

@@ -3,18 +3,43 @@ import { connect } from "react-redux";
 import { getOnePost, likeAPost, unlikeAPost } from "../../redux/actions/posts";
 import { Typography } from "@material-ui/core";
 import PostDetailComponent from "./PostDetailComponent";
-import { updateLoggedUser } from "../../redux/actions/account";
+import { updateLoggedUser, getLoggedUser } from "../../redux/actions/account";
+import { saveComment } from "../../redux/actions/comments";
 
 class PostDetailContainer extends React.Component {
-  componentWillMount() {
-    this.props.getOnePost(this.props.postId);
-  }
-
-  handleChange = (event, newValue) => {
-    this.setState({ ...this.state, activeTab: newValue });
+  state = {
+    comment: ""
   };
 
-  // Handle btn to bookmark
+  componentWillMount = () => {
+    this.props.getOnePost(this.props.postId);
+    this.props.getCurrentUser();
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  };
+
+  handleSubmitComment = e => {
+    e.preventDefault();
+    this.setState({ comment: "" });
+    this.props.saveComment(this.props.posts.post, this.state.comment);
+
+    var new_obj = {
+      user: {
+        _id: this.props.account.user._id,
+        name: this.props.account.user.name,
+        surname: this.props.account.user.surname
+      },
+      content: this.state.comment,
+      date: new Date()
+    };
+
+    this.props.posts.post.comments.push(new_obj);
+  };
+
   handleSaveToBookmarks = () => {
     var userPayload;
     if (!this.isBookmarked(this.props.posts.post)) {
@@ -84,6 +109,9 @@ class PostDetailContainer extends React.Component {
             liked={this.isFavorite(this.props.posts.post)}
             handleSaveToBookmarks={this.handleSaveToBookmarks}
             handleFavorite={this.handleFavorite}
+            comment={this.state.comment}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmitComment}
           />
         )}
 
@@ -111,7 +139,10 @@ const mapActionToProps = dispatch => ({
   getOnePost: postId => dispatch(getOnePost(postId, dispatch)),
   updateUser: user => dispatch(updateLoggedUser(user, dispatch)),
   putALike: post => dispatch(likeAPost(post, dispatch)),
-  removeALike: post => dispatch(unlikeAPost(post, dispatch))
+  removeALike: post => dispatch(unlikeAPost(post, dispatch)),
+  saveComment: (post, content) =>
+    dispatch(saveComment(post, content, dispatch)),
+  getCurrentUser: () => dispatch(getLoggedUser(dispatch))
 });
 
 export default connect(

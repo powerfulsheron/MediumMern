@@ -2,11 +2,12 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { Chip, Grid, ButtonBase, Button } from "@material-ui/core";
+import { Chip, Grid, ButtonBase, Button, TextField } from "@material-ui/core";
 import moment from "moment";
 import { Bookmarks, FavoriteOutlined } from "@material-ui/icons";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import { CommentComponent } from "../comment/CommentComponent";
 
 const useStyles = makeStyles(theme => ({
   chip: {
@@ -51,7 +52,10 @@ export default function PostDetailComponent({
   handleSaveToBookmarks,
   handleFavorite,
   bookmarked,
-  liked
+  liked,
+  comment = "",
+  handleChange,
+  handleSubmit
 }) {
   const classes = useStyles();
 
@@ -207,6 +211,37 @@ export default function PostDetailComponent({
               )
             }}
           />
+
+          {/* COMMENTS */}
+          <div style={{ marginTop: 96 }}>
+            <Typography
+              style={{
+                marginBottom: 32,
+                fontWeight: "bold"
+              }}
+              variant="button"
+            >
+              Comments ({post.comments.length})
+            </Typography>
+            <p>
+              {post.comments.map(comment => (
+                <CommentComponent comment={comment} />
+              ))}
+            </p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id="comment"
+              label="Write a comment"
+              value={comment}
+              onChange={handleChange}
+              margin="normal"
+              fullWidth
+            />
+            <Button variant="outlined" color="secondary" type="submit">
+              Send
+            </Button>
+          </form>
         </Grid>
         {/* ---- */}
 
