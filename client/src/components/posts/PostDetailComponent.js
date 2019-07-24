@@ -190,7 +190,7 @@ export default function PostDetailComponent({
 
           {/* - AUTHOR AND DATE - */}
           {post.user && (
-            <Link to={"/user/" + post.user.id}>
+            <Link to={"/user/" + post.user._id}>
               <Typography variant="caption" style={{ fontWeight: "bold" }}>
                 {post.user.name +
                   " " +
