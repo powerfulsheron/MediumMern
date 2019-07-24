@@ -1,5 +1,5 @@
 const accountReducer = (
-  state = { loaded: false, updated: false, user: {}, status: "" },
+  state = { loaded: false, updated: false, user: {}, status: "", err: "" },
   action
 ) => {
   switch (action.type) {
