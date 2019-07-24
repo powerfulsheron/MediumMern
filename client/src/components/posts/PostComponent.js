@@ -65,7 +65,7 @@ export default function PostComponent({
     score: "",
     date: moment().format("DD-MM-YYYY"),
     timetoread: 5,
-    user: { name: "", surname: "" },
+    user: { _id: "", name: "", surname: "" },
     tags: [],
     type: ""
   }
@@ -148,13 +148,22 @@ export default function PostComponent({
 
               {/* - AUTHOR AND DATE - */}
               {post.user && (
-                <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                  {post.user.name +
-                    " " +
-                    post.user.surname +
-                    " - Ecrit le " +
-                    moment(post.date).format("DD-MM-YYYY à HH:mm")}
-                </Typography>
+                <Link
+                  to={"/user/" + post.user._id}
+                  style={{
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    color: "black"
+                  }}
+                >
+                  <Typography variant="caption" style={{ fontWeight: "bold" }}>
+                    {post.user.name +
+                      " " +
+                      post.user.surname +
+                      " - Ecrit le " +
+                      moment(post.date).format("DD-MM-YYYY à HH:mm")}
+                  </Typography>
+                </Link>
               )}
             </CardContent>
           </Grid>
