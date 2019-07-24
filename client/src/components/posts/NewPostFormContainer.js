@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Paper, Typography, Snackbar } from "@material-ui/core";
+import { Paper, Snackbar } from "@material-ui/core";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import NewPostFormik from "./NewPostFormik";
 import { postAPost } from "../../redux/actions/posts";
@@ -13,6 +13,14 @@ class NewPostFormContainer extends React.Component {
     this.props.getAllTypes();
   }
 
+  isSaved = () => {
+    return this.props.posts.status !== "";
+  };
+
+  isError = () => {
+    return this.props.posts.err !== "";
+  };
+
   render() {
     return (
       <>
@@ -21,7 +29,7 @@ class NewPostFormContainer extends React.Component {
             vertical: "top",
             horizontal: "right"
           }}
-          open={this.props.posts.status}
+          open={this.isSaved()}
           autoHideDuration={6000}
           onClose={this.handleClose}
         >
@@ -37,7 +45,7 @@ class NewPostFormContainer extends React.Component {
             vertical: "top",
             horizontal: "right"
           }}
-          open={this.props.posts.err}
+          open={this.isError()}
           autoHideDuration={6000}
           onClose={this.handleClose}
         >
