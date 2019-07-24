@@ -13,12 +13,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     marginTop: 50,
     textAlign: "left"
-  },
-  itemMenu: {
-    fontWeight: "bold"
-  },
-  links: {
-    textDecoration: "none"
   }
 }));
 
