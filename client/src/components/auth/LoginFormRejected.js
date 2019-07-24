@@ -17,7 +17,7 @@ const LoginFormRejected = ({ message }) => {
   const classes = useStyles();
   return (
     <Paper className={classes.root} elevation='1'>
-      <Typography component="p">{message}</Typography>
+      <Typography>{message}</Typography>
     </Paper>
   );
 };

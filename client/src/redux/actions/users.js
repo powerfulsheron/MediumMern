@@ -1,4 +1,3 @@
-const jwtDecode = require("jwt-decode");
 const BASE_URL = "http://localhost:3000/api/v1";
 
 // ---- GET /users?_id=:id -----

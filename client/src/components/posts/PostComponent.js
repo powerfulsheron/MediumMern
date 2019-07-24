@@ -138,41 +138,38 @@ export default function PostComponent({
                 {post.description}
               </Typography>
 
+              {/* - AUTHOR AND DATE - */}
+              {post.user && (
+                <>
+                  <Link
+                    to={"/user/" + post.user._id}
+                    style={{
+                      textDecoration: "none",
+                      cursor: "pointer",
+                      color: "black"
+                    }}
+                  >
+                    <Typography
+                      variant="caption"
+                      style={{ fontWeight: "bold" }}
+                    >
+                      {post.user.name + " " + post.user.surname}
+                    </Typography>
+                  </Link>
+                  <Typography variant="caption" style={{ fontWeight: "bold" }}>
+                    {" - Ecrit le " +
+                      moment(post.date).format("DD-MM-YYYY à HH:mm") + " - "}
+                  </Typography>
+                </>
+              )}
+
               {/* - KPI - */}
-              <Typography variant="caption" component="p">
-                {"Score : " +
+              <Typography variant="caption">
+                {" Score : " +
                   post.score +
                   " - Time to read : " +
                   post.timetoread}
               </Typography>
-
-              {/* - AUTHOR AND DATE - */}
-              {post.user && (
-                <>
-                <Link
-                  to={"/user/" + post.user._id}
-                  style={{
-                    textDecoration: "none",
-                    cursor: "pointer",
-                    color: "black"
-                  }}
-                >
-                  <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                    {
-                      post.user.name +
-                      " " +
-                      post.user.surname
-                    }
-                  </Typography>
-                </Link>
-                <Typography variant="caption" style={{ fontWeight: "bold" }}>
-                {
-                  " - Ecrit le " +
-                  moment(post.date).format("DD-MM-YYYY à HH:mm")
-                }
-                </Typography>
-                </>
-              )}
             </CardContent>
           </Grid>
           <Grid item>

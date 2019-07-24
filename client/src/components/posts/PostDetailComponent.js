@@ -8,6 +8,7 @@ import { Bookmarks, FavoriteOutlined } from "@material-ui/icons";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { CommentComponent } from "../comment/CommentComponent";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   chip: {
@@ -189,13 +190,15 @@ export default function PostDetailComponent({
 
           {/* - AUTHOR AND DATE - */}
           {post.user && (
-            <Typography variant="caption" style={{ fontWeight: "bold" }}>
-              {post.user.name +
-                " " +
-                post.user.surname +
-                " - Ecrit le " +
-                moment(post.date).format("DD-MM-YYYY à HH:mm")}
-            </Typography>
+            <Link to={"/user/" + post.user.id}>
+              <Typography variant="caption" style={{ fontWeight: "bold" }}>
+                {post.user.name +
+                  " " +
+                  post.user.surname +
+                  " - Ecrit le " +
+                  moment(post.date).format("DD-MM-YYYY à HH:mm")}
+              </Typography>
+            </Link>
           )}
 
           {/* CONTENT */}
@@ -225,7 +228,7 @@ export default function PostDetailComponent({
             </Typography>
             <p>
               {post.comments.map(comment => (
-                <CommentComponent comment={comment} />
+                <CommentComponent key={comment._id} comment={comment} />
               ))}
             </p>
           </div>

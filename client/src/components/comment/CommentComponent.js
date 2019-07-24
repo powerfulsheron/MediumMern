@@ -9,7 +9,7 @@ export function CommentComponent({ comment }) {
       <div
         style={{ marginTop: 36, borderBottom: "1px solid #cacaca", padding: 8 }}
       >
-        <Typography style={{ marginTop: 20 }} variant="body">
+        <Typography style={{ marginTop: 20 }} variant="body1">
           {comment.content}
         </Typography>
 

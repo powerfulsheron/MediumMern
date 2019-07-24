@@ -58,7 +58,7 @@ class LoginFormContainer extends React.Component {
         {this.props.auth.logged === true && (
           <>
             <Redirect to="/posts" />
-            <Typography component="p">You are already logged in :)</Typography>
+            <Typography>You are already logged in :)</Typography>
           </>
         )}
       </>
