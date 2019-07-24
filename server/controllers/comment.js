@@ -9,7 +9,7 @@ module.exports = {
           .then(user => {
             post.comments.push({
               content: req.body.content,
-              date: req.body.date,
+              date: new Date(),
               user: {
                 _id: req.user.id,
                 name: user.name,

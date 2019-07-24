@@ -19,7 +19,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-  
+
   server:
     image: 'node:10-alpine'
     volumes:
@@ -39,7 +39,7 @@ services:
     volumes:
       - './client:/home/node/app:rw,consistent'
     working_dir: '/home/node/app'
-    environment: 
+    environment:
       JWT_SECRET: "MyBestSecret"
     command: 'yarn start'
     ports:

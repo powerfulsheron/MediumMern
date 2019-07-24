@@ -43,7 +43,7 @@ class AccountContainer extends React.Component {
             vertical: "top",
             horizontal: "right"
           }}
-          open={this.props.account.err}
+          open={this.props.account.err === ""}
           autoHideDuration={6000}
           onClose={this.handleClose}
         >
